@@ -13,9 +13,52 @@ import firstSmartMart1 from "../assets/firstSmartMart1.png";
 import firstSmartMart2 from "../assets/firstSmartMart2.png";
 import schoolFinder1 from "../assets/schoolfinder1.png";
 import schoolFinder2 from "../assets/schoolfinder2.png";
+import schoolFinder3 from "../assets/schoolfinder3.png";
+import schoolFinder4 from "../assets/schoolfinder4.png";
+import schoolFinder5 from "../assets/schoolfinder5.png";
+import schoolFinder6 from "../assets/schoolfinder6.png";
+import solSweep1 from "../assets/SolSweep1.png";
+import solSweep2 from "../assets/SolSweep2.png";
 import mysite from "../assets/mysite.png";
+import Agrosense1 from "../assets/Agrosense1.jpeg";
+import Agrosense2 from "../assets/Agrosense2.jpeg";
+import Agrosense3 from "../assets/Agrosense3.png";
+import Agrosense4 from "../assets/Agrosense4.png";
+import Agrosense5 from "../assets/Agrosense5.png";
+import FamilyAnchor1 from "../assets/familyanchor1.png";
+import FamilyAnchor2 from "../assets/familyanchor2.png";
+import FamilyAnchor3 from "../assets/familyanchor3.png";
 
 const projectsData = [
+  {
+    images: [
+      Agrosense1,
+      Agrosense2,
+      Agrosense3,
+      Agrosense4,
+      Agrosense5,
+    ],
+    title: "AgroSense360",
+    description: "Smart Crop Health Monitoring and Advisory Using AI and IoT Based Mulitilingual Rover System",
+    tech: ["React", "TailwindCSS", "Firebase", "ESP32", "Arduino", "Python"],
+    link: "https://schoolfinderabj.web.app/",
+    github: "#",
+    category: "IoT & Hardware"
+
+  },
+  {
+    images: [
+      FamilyAnchor1,
+      FamilyAnchor2,
+      FamilyAnchor3,
+    ],
+    title: "Family Anchor",
+    description: "A web platform that connects families with local resources, support services, and community events to strengthen family bonds and well-being.",
+    tech: ["React", "TailwindCSS"],
+    link: "https://familyanchor.org/",
+    github: "#",
+    category: "Web Development"
+  },
   {
     images: [
       firstSmartMart1,
@@ -32,13 +75,29 @@ const projectsData = [
     images: [
       schoolFinder1,
       schoolFinder2,
+      schoolFinder3,
+      schoolFinder4,
+      schoolFinder5,
+      schoolFinder6,
     ],
     title: "School Finder",
-    description: "A website used to Find the Perfect Secondary School for your kid in Abuja and Nigeria as a whole",
-    tech: ["React", "TailwindCSS", "JSON"],
-    link: "https://schoolfinderr.web.app/",
-    github: "#",
+    description: "A website used to Find the Perfect School (Nursery, Primary, Secondary, Tertiary) for your kid in Abuja and Nigeria as a whole.",
+    tech: ["React", "TailwindCSS", "Laravel", "MySQL"],
+    link: "https://schoolfinderabuja.com/",
+    github: "https://github.com/AustinChris1/SchoolFinder",
     category: "Education"
+  },
+  {
+    images: [
+      solSweep1,
+      solSweep2,
+    ],
+    title: "Solana Token Sweeper",
+    description: "A program that  that automatically detects and swaps all non-SOL tokens in a given wallet to SOL on the Solana blockchain.",
+    tech: ["React", "TailwindCSS", "Javascript", "Vercel"],
+    link: "https://solanasweep.vercel.app/",
+    github: "https://github.com/AustinChris1/SolSweep",
+    category: "Blockchain"
   },
   {
     images: [
@@ -56,7 +115,7 @@ const projectsData = [
       firstdigit,
     ],
     title: "First Digit Website",
-    description: "A modern communication platform website focusing on helping users stay connected in the digital world with advanced features.",
+    description: "A modern platform website focusing on helping users stay connected in the digital world with advanced features.",
     tech: ["React", "PHP", "MySQL", "TailwindCSS"],
     link: "https://www.firstdigit.com.ng/",
     github: "#",
@@ -68,7 +127,7 @@ const projectsData = [
     ],
     title: "Emergency Dashboard",
     description: "A real-time emergency response dashboard for monitoring critical situations with live data visualization and alert systems.",
-    tech: ["React", "D3.js", "WebSocket", "Python"],
+    tech: ["React", "TailwindCSS", "PHP", "MySQL"],
     link: "#",
     github: "https://github.com/AustinChris1/EmergencySystem",
     category: "Data Analytics"
@@ -79,7 +138,7 @@ const projectsData = [
     ],
     title: "ESP32 Firebase Integration",
     description: "An ESP32 project that listens to Firebase real-time updates to control lights and monitor room temperature with graphical data.",
-    tech: ["ESP32", "Firebase", "C++", "IoT"],
+    tech: ["ESP32", "Firebase", "Arduino", "IoT"],
     link: "https://esp-test-43661.web.app/#",
     github: "#",
     category: "IoT & Hardware"
@@ -90,7 +149,7 @@ const projectsData = [
     ],
     title: "Motoko Student Wall",
     description: "A decentralized student forum built with Motoko for the Internet Computer ecosystem with blockchain-based interactions.",
-    tech: ["Motoko", "Internet Computer", "Blockchain"],
+    tech: ["Motoko", "Internet Computer", "JS"],
     link: "https://7vjgk-cqaaa-aaaal-ackqq-cai.icp0.io/",
     github: "#",
     category: "Blockchain"
