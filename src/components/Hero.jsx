@@ -308,7 +308,7 @@ function Opening() {
             Available · 2026
           </span>
           <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-md text-[11px] uppercase tracking-widest2 text-white/80">
-            B.Eng · Engineer
+            B.Eng (EEE) · Engineer
           </span>
         </div>
 
@@ -353,7 +353,7 @@ function Opening() {
 
         {/* Copy */}
         <p className="op-copy mt-8 max-w-2xl text-base md:text-lg text-white/55 leading-relaxed">
-          B.Eng-trained engineer crafting innovative digital solutions that
+          B.Eng (EEE) trained engineer crafting innovative digital solutions that
           seamlessly integrate cutting-edge web technologies with sophisticated
           embedded systems architecture.
         </p>
