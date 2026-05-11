@@ -1,410 +1,222 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Twitter, Github, Linkedin, Mail, Check, ArrowRight, Sparkles } from "lucide-react";
+import {
+  Twitter,
+  Github,
+  Linkedin,
+  Mail,
+  Check,
+  ArrowUpRight,
+  Copy,
+} from "lucide-react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const socialLinks = [
+  {
+    href: "https://x.com/AustinChris_",
+    icon: Twitter,
+    label: "Twitter / X",
+    handle: "@AustinChris_",
+  },
+  {
+    href: "https://github.com/AustinChris1",
+    icon: Github,
+    label: "GitHub",
+    handle: "AustinChris1",
+  },
+  {
+    href: "https://linkedin.com/in/austinchris1",
+    icon: Linkedin,
+    label: "LinkedIn",
+    handle: "austinchris1",
+  },
+];
 
 const Contact = () => {
-  const [hoveredSocial, setHoveredSocial] = useState(null);
   const [emailCopied, setEmailCopied] = useState(false);
-  const [isEmailHovered, setIsEmailHovered] = useState(false);
-  const mousePosition = useRef({ x: 0, y: 0 });
-
-  // Track mouse position for 3D effects
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      mousePosition.current = {
-        x: (e.clientX / window.innerWidth) * 2 - 1,
-        y: (e.clientY / window.innerHeight) * 2 - 1
-      };
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  const sectionRef = useRef(null);
+  const headlineRef = useRef(null);
 
   const handleEmailCopy = () => {
-    navigator.clipboard.writeText('austinchrisiwu@gmail.com');
+    navigator.clipboard.writeText("austinchrisiwu@gmail.com");
     setEmailCopied(true);
-    setTimeout(() => setEmailCopied(false), 3000);
+    setTimeout(() => setEmailCopied(false), 2500);
   };
 
-  const socialLinks = [
-    { 
-      href: "https://x.com/AustinChris_", 
-      icon: Twitter, 
-      label: "Twitter",
-      color: "from-blue-400 to-blue-600",
-      glowColor: "rgba(59, 130, 246, 0.4)",
-      description: "Follow my tech journey"
-    },
-    { 
-      href: "https://github.com/AustinChris1", 
-      icon: Github, 
-      label: "GitHub",
-      color: "from-gray-400 to-gray-600",
-      glowColor: "rgba(107, 114, 128, 0.4)",
-      description: "Explore my code"
-    },
-    { 
-      href: "https://linkedin.com/in/austinchris1", 
-      icon: Linkedin, 
-      label: "LinkedIn",
-      color: "from-blue-500 to-blue-700",
-      glowColor: "rgba(59, 130, 246, 0.4)",
-      description: "Connect professionally"
-    }
-  ];
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 1.2,
-        staggerChildren: 0.3
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const root = sectionRef.current;
+      if (!root) return;
+      const words = headlineRef.current?.querySelectorAll(".ct-word");
+      if (words?.length) {
+        gsap.set(words, { yPercent: 110, opacity: 0 });
+        gsap.to(words, {
+          yPercent: 0,
+          opacity: 1,
+          stagger: 0.04,
+          duration: 0.9,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: headlineRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
       }
-    }
-  };
-
-  const titleVariants = {
-    hidden: { opacity: 0, y: -60, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 1,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }
-    }
-  };
-
-  const emailVariants = {
-    hidden: { opacity: 0, y: 50, rotateX: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const socialVariants = {
-    hidden: { opacity: 0, scale: 0, rotate: -180 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-        type: "spring",
-        stiffness: 120
-      }
-    }
-  };
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
+    <section
+      ref={sectionRef}
       id="contact"
-      className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white relative overflow-hidden flex items-center justify-center"
+      className="relative bg-ink-950 text-white overflow-hidden"
     >
-      {/* Enhanced animated background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Floating particles */}
-        {[...Array(25)].map((_, i) => (
-          <motion.div
-            key={`particle-${i}`}
-            className="absolute rounded-full"
-            style={{
-              width: Math.random() * 4 + 2,
-              height: Math.random() * 4 + 2,
-              background: `linear-gradient(45deg, 
-                ${i % 3 === 0 ? '#00ff88' : i % 3 === 1 ? '#ff6b35' : '#4dabf7'}, 
-                ${i % 3 === 0 ? '#4dabf7' : i % 3 === 1 ? '#00ff88' : '#ff6b35'})`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`
-            }}
-            animate={{
-              x: [0, Math.random() * 200 - 100],
-              y: [0, Math.random() * 200 - 100],
-              scale: [1, Math.random() * 2 + 0.5, 1],
-              opacity: [0.3, 0.8, 0.3]
-            }}
-            transition={{
-              duration: Math.random() * 20 + 15,
-              repeat: Infinity,
-              ease: "linear",
-              delay: Math.random() * 5
-            }}
-          />
-        ))}
+      {/* Glow accents */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-60"
+        style={{
+          backgroundImage:
+            "radial-gradient(900px 600px at 10% 20%, rgba(200,255,62,0.08), transparent), radial-gradient(900px 500px at 90% 90%, rgba(125,211,252,0.07), transparent)",
+        }}
+      />
 
-        {/* Geometric patterns */}
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={`shape-${i}`}
-            className="absolute border border-green-400/10"
-            style={{
-              width: 60 + i * 20,
-              height: 60 + i * 20,
-              left: `${10 + i * 10}%`,
-              top: `${15 + (i % 4) * 20}%`,
-              borderRadius: i % 2 === 0 ? '50%' : '0%'
-            }}
-            animate={{
-              rotate: [0, 360],
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.3, 0.1]
-            }}
-            transition={{
-              duration: 25 + i * 5,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Main content */}
-      <div className="relative z-10 container mx-auto px-6 py-20 text-center">
-        {/* Header Section */}
-        <motion.div 
-          variants={titleVariants}
-          className="mb-20"
-        >
-          <motion.div className="flex items-center justify-center mb-6">
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="text-green-400 mr-4" size={32} />
-            </motion.div>
-            <motion.h1 
-              className="text-6xl md:text-8xl font-bold"
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              style={{
-                background: "linear-gradient(45deg, #00ff88, #ff6b35, #4dabf7, #9775fa, #00ff88)",
-                backgroundSize: "400% 400%",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text"
-              }}
-            >
-              Let's Connect
-            </motion.h1>
-            <motion.div
-              animate={{ rotate: [0, -360] }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="text-blue-400 ml-4" size={32} />
-            </motion.div>
-          </motion.div>
-          
-          <motion.p 
-            className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
-            variants={titleVariants}
+      <div className="relative z-10 container mx-auto px-6 md:px-12 py-28">
+        {/* Header */}
+        <div className="mb-20 text-center">
+          <div className="overflow-hidden mb-4">
+            <span className="inline-block text-xs uppercase tracking-widest2 text-accent-lime font-mono">
+              /03 — Contact
+            </span>
+          </div>
+          <h2
+            ref={headlineRef}
+            className="font-display text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.9]"
           >
-            Ready to bring your ideas to life? Let's collaborate and create something extraordinary together.
-          </motion.p>
-        </motion.div>
+            <span className="mask-line block">
+              {"Have an idea?".split(" ").map((w, i) => (
+                <span
+                  key={i}
+                  className="ct-word inline-block"
+                  style={{ marginRight: "0.25em" }}
+                >
+                  {w}
+                </span>
+              ))}
+            </span>
+            <span className="mask-line block bg-gradient-to-r from-accent-lime via-white to-accent-sky bg-clip-text text-transparent">
+              {"Let's build it.".split(" ").map((w, i) => (
+                <span
+                  key={`b-${i}`}
+                  className="ct-word inline-block"
+                  style={{ marginRight: "0.25em" }}
+                >
+                  {w}
+                </span>
+              ))}
+            </span>
+          </h2>
+          <p className="mt-8 text-base md:text-lg text-white/55 max-w-2xl mx-auto leading-relaxed">
+            Open to full-stack engineering, embedded/IoT, and ambitious side
+            projects. If you're shipping something interesting, I'd love to hear
+            about it.
+          </p>
+        </div>
 
-        {/* Email Section */}
-        <motion.div 
-          variants={emailVariants}
-          className="mb-20"
-        >
-          <motion.div
-            className="group relative inline-block"
-            onMouseEnter={() => setIsEmailHovered(true)}
-            onMouseLeave={() => setIsEmailHovered(false)}
+        {/* Email card */}
+        <div className="max-w-3xl mx-auto mb-20">
+          <button
+            onClick={handleEmailCopy}
+            className="group relative w-full text-left p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/10 hover:border-accent-lime/50 transition-all duration-500 backdrop-blur-md overflow-hidden"
           >
-            <motion.div
-              className="relative bg-gray-800/30 backdrop-blur-xl p-8 md:p-12 rounded-3xl border border-gray-700/50 shadow-2xl cursor-pointer"
-              style={{
-                transform: `perspective(1000px) rotateX(${mousePosition.current.y * 3}deg) rotateY(${mousePosition.current.x * 3}deg)`
-              }}
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 25px 50px rgba(0,255,136,0.2)"
-              }}
-              whileTap={{ scale: 0.98 }}
-              onClick={handleEmailCopy}
-            >
-              {/* Glowing border effect */}
-              <motion.div
-                className="absolute inset-0 rounded-3xl bg-gradient-to-r from-green-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                animate={isEmailHovered ? { 
-                  background: ["linear-gradient(0deg, rgba(0,255,136,0.2), rgba(77,171,247,0.2))",
-                             "linear-gradient(90deg, rgba(77,171,247,0.2), rgba(255,107,53,0.2))",
-                             "linear-gradient(180deg, rgba(255,107,53,0.2), rgba(0,255,136,0.2))",
-                             "linear-gradient(270deg, rgba(0,255,136,0.2), rgba(77,171,247,0.2))"]
-                } : {}}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-
-              <div className="relative z-10 flex flex-col items-center">
-                <motion.div
-                  className="p-4 rounded-2xl bg-gradient-to-r from-green-500 to-blue-500 mb-6"
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <Mail size={32} className="text-white" />
-                </motion.div>
-
-                <motion.h2 
-                  className="text-2xl md:text-3xl font-bold mb-4 text-gray-200"
-                  animate={isEmailHovered ? { scale: [1, 1.05, 1] } : {}}
-                  transition={{ duration: 0.5 }}
-                >
-                  Email Me
-                </motion.h2>
-
-                <motion.p 
-                  className="text-3xl md:text-4xl font-mono bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent mb-4"
-                  animate={isEmailHovered ? { 
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                  } : {}}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  style={{ backgroundSize: "200% 200%" }}
-                >
-                  austinchrisiwu@gmail.com
-                </motion.p>
-
+            <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/[0.04] to-accent-sky/[0.04] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="flex items-center gap-5">
+                <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-accent-lime text-ink-950 flex items-center justify-center shrink-0">
+                  <Mail size={26} />
+                </div>
+                <div>
+                  <div className="text-xs uppercase tracking-widest2 text-white/50 mb-2">
+                    Email
+                  </div>
+                  <div className="font-display text-2xl md:text-4xl font-bold text-white break-all">
+                    austinchrisiwu@gmail.com
+                  </div>
+                </div>
               </div>
-
-              {/* Success notification */}
-              <AnimatePresence>
-                {emailCopied && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0, y: -20 }}
-                    className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2"
-                  >
-                    <Check size={16} />
-                    Email copied!
-                  </motion.div>
+              <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/5 border border-white/10 text-xs uppercase tracking-widest2 text-white/70 group-hover:bg-accent-lime group-hover:text-ink-950 group-hover:border-accent-lime transition-all duration-500">
+                {emailCopied ? (
+                  <>
+                    <Check size={14} /> Copied
+                  </>
+                ) : (
+                  <>
+                    <Copy size={14} /> Copy
+                  </>
                 )}
-              </AnimatePresence>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+              </div>
+            </div>
+            <AnimatePresence>
+              {emailCopied && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent-lime text-ink-950 text-[10px] uppercase tracking-widest2 font-medium"
+                >
+                  <Check size={12} />
+                  Copied to clipboard
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </button>
+        </div>
 
-        {/* Social Media Links */}
-        <motion.div variants={emailVariants}>
-          <motion.h3 
-            className="text-3xl md:text-4xl font-bold mb-12 text-center"
-            variants={titleVariants}
-          >
-            Follow My Journey
-          </motion.h3>
-          
-          <div className="flex flex-wrap justify-center gap-8 md:gap-12">
-            {socialLinks.map((social, index) => (
+        {/* Socials */}
+        <div className="max-w-4xl mx-auto">
+          <div className="text-xs uppercase tracking-widest2 text-white/50 mb-6 text-center">
+            Find me elsewhere
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {socialLinks.map((s) => (
               <motion.a
-                key={index}
-                href={social.href}
+                key={s.label}
+                href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative"
-                variants={socialVariants}
-                whileHover={{ 
-                  scale: 1.15, 
-                  rotate: 5,
-                  transition: { duration: 0.3 }
-                }}
-                whileTap={{ scale: 0.9 }}
-                onMouseEnter={() => setHoveredSocial(index)}
-                onMouseLeave={() => setHoveredSocial(null)}
+                className="group relative p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/30 transition-all duration-500 flex items-center justify-between"
+                whileHover={{ y: -4 }}
               >
-                <motion.div
-                  className="relative"
-                  animate={hoveredSocial === index ? {
-                    y: [-5, 5, -5],
-                  } : {}}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  {/* Glowing background */}
-                  <motion.div
-                    className="absolute inset-0 rounded-3xl blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-500"
-                    style={{ 
-                      background: `linear-gradient(45deg, ${social.color.replace('from-', '').replace(' to-', ', ')})` 
-                    }}
-                    animate={hoveredSocial === index ? {
-                      scale: [1, 1.2, 1],
-                    } : {}}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-
-                  <motion.div
-                    className={`relative p-3 md:p-4 rounded-3xl bg-gradient-to-r ${social.color} shadow-xl backdrop-blur-sm`}
-                    style={{
-                      boxShadow: hoveredSocial === index 
-                        ? `0 20px 40px ${social.glowColor}` 
-                        : "0 10px 20px rgba(0,0,0,0.3)"
-                    }}
-                  >
-                    <social.icon size={36} className="text-white mb-2" />
-                    <div className="text-center">
-                      <h4 className="text-lg font-bold text-white mb-1">{social.label}</h4>
+                <div className="flex items-center gap-4">
+                  <div className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-lime group-hover:text-ink-950 group-hover:border-accent-lime transition-all duration-500">
+                    <s.icon size={18} />
+                  </div>
+                  <div>
+                    <div className="text-sm font-medium text-white">
+                      {s.label}
                     </div>
-                  </motion.div>
-                </motion.div>
-
-                {/* Enhanced tooltip */}
-                <AnimatePresence>
-                  {hoveredSocial === index && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 15, scale: 0.8 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 15, scale: 0.8 }}
-                      className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-4 py-2 rounded-xl text-sm whitespace-nowrap border border-gray-700 shadow-xl"
-                    >
-                      Visit my {social.label}
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                    <div className="text-xs text-white/50">{s.handle}</div>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-5 h-5 text-white/40 group-hover:text-accent-lime group-hover:rotate-45 transition-all duration-500" />
               </motion.a>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Footer */}
-        <motion.div 
-          className="mt-20 pt-8 border-t border-gray-700/30"
-          variants={titleVariants}
-        >
-          <motion.p 
-            className="text-gray-400 text-lg"
-            animate={{
-              opacity: [0.5, 1, 0.5]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            © 2025 Austin-Chris. Crafted with passion and innovation.
-          </motion.p>
-        </motion.div>
+        <div className="mt-24 pt-10 border-t border-white/10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40 uppercase tracking-widest2">
+            <span>© {new Date().getFullYear()} Austin-Chris · B.Eng</span>
+            <span>Crafted with React, Three.js, GSAP & passion</span>
+          </div>
+        </div>
       </div>
-    </motion.div>
+    </section>
   );
 };
 
