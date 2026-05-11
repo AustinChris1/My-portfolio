@@ -305,7 +305,7 @@ function Opening() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-lime opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-lime" />
             </span>
-            Available · 2026
+            Available · {new Date().getFullYear()}
           </span>
           <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-md text-[11px] uppercase tracking-widest2 text-white/80">
             B.Eng (EEE) · Engineer

@@ -211,7 +211,7 @@ const Contact = () => {
         {/* Footer */}
         <div className="mt-24 pt-10 border-t border-white/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40 uppercase tracking-widest2">
-            <span>© {new Date().getFullYear()} Austin-Chris · B.Eng</span>
+            <span>© {new Date().getFullYear()} Austin-Chris · B.Eng (EEE)</span>
             <span>Crafted with React, Three.js, GSAP & passion</span>
           </div>
         </div>
