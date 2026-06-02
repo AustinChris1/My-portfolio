@@ -8,6 +8,8 @@ import {
   Play,
   Pause,
   ArrowUpRight,
+  X,
+  Maximize2,
 } from "lucide-react";
 import ReactPaginate from "react-paginate";
 import gsap from "gsap";
@@ -100,7 +102,7 @@ const projectsData = [
   },
   {
     images: [DoorAccessControl],
-    title: "ESP32 Door Access Control Simulator",
+    title: "Door Access Control Simulator",
     description:
       "A simulation of an ESP32-based door access control system.",
     tech: ["Proteus"],
@@ -269,6 +271,7 @@ const Projects = () => {
   const [filter, setFilter] = useState("All");
   const [autoPlay, setAutoPlay] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
+  const [selectedProject, setSelectedProject] = useState(null);
   const projectsPerPage = 6;
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
@@ -346,7 +349,7 @@ const Projects = () => {
           <div>
             <div className="overflow-hidden mb-2">
               <span className="inline-block text-xs uppercase tracking-widest2 text-accent-lime font-mono">
-                /02 — Selected work
+                /02 · Selected work
               </span>
             </div>
             <h2
@@ -424,6 +427,7 @@ const Projects = () => {
                 project={project}
                 index={index}
                 autoPlay={autoPlay}
+                onOpen={() => setSelectedProject(project)}
               />
             ))}
           </AnimatePresence>
@@ -472,11 +476,17 @@ const Projects = () => {
           </motion.div>
         )}
       </div>
+
+      {/* Detail modal */}
+      <ProjectModal
+        project={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   );
 };
 
-const ProjectCard = ({ project, index, autoPlay }) => {
+const ProjectCard = ({ project, index, autoPlay, onOpen }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const intervalRef = useRef(null);
@@ -506,13 +516,14 @@ const ProjectCard = ({ project, index, autoPlay }) => {
 
   return (
     <motion.article
-      className="group relative bg-white/[0.03] border border-white/10 rounded-3xl overflow-hidden hover:border-white/25 transition-colors duration-500"
+      className="group relative bg-white/[0.03] border border-white/10 rounded-3xl overflow-hidden hover:border-white/25 transition-colors duration-500 cursor-pointer"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 40 }}
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: index * 0.06 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onOpen}
     >
       {/* Image area */}
       <div className="relative aspect-[16/10] overflow-hidden bg-ink-900">
@@ -569,6 +580,12 @@ const ProjectCard = ({ project, index, autoPlay }) => {
           <span className="w-1 h-1 rounded-full bg-accent-lime" />
           {project.category}
         </span>
+
+        {/* View details hint */}
+        <span className="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-ink-950/70 backdrop-blur-md border border-white/10 text-[10px] uppercase tracking-widest2 text-white/80 opacity-0 group-hover:opacity-100 transition z-10">
+          <Maximize2 size={11} />
+          View
+        </span>
       </div>
 
       {/* Body */}
@@ -582,6 +599,7 @@ const ProjectCard = ({ project, index, autoPlay }) => {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="shrink-0 mt-1 text-white/50 hover:text-accent-lime transition"
               aria-label={`Open ${project.title}`}
             >
@@ -611,6 +629,7 @@ const ProjectCard = ({ project, index, autoPlay }) => {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-ink-950 text-xs uppercase tracking-widest2 hover:bg-accent-lime transition-colors duration-500"
             >
               <ExternalLink size={14} />
@@ -626,6 +645,7 @@ const ProjectCard = ({ project, index, autoPlay }) => {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/5 transition"
               aria-label="GitHub repo"
             >
@@ -635,6 +655,187 @@ const ProjectCard = ({ project, index, autoPlay }) => {
         </div>
       </div>
     </motion.article>
+  );
+};
+
+const ProjectModal = ({ project, onClose }) => {
+  const [imageIndex, setImageIndex] = useState(0);
+
+  // Reset to first image whenever a new project is opened
+  useEffect(() => {
+    setImageIndex(0);
+  }, [project]);
+
+  // Escape to close + lock body scroll while open
+  useEffect(() => {
+    if (!project) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") setImageIndex((p) => (p + 1) % project.images.length);
+      if (e.key === "ArrowLeft")
+        setImageIndex((p) => (p - 1 + project.images.length) % project.images.length);
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [project, onClose]);
+
+  const hasMultiple = project?.images.length > 1;
+
+  return (
+    <AnimatePresence>
+      {project && (
+        <motion.div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+          aria-label={project.title}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-ink-950/80 backdrop-blur-md" />
+
+          {/* Panel */}
+          <motion.div
+            className="relative z-10 w-full max-w-5xl max-h-[90vh] overflow-y-auto bg-ink-900 border border-white/10 rounded-3xl shadow-2xl"
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 20 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close button */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 z-20 p-2 rounded-full bg-ink-950/70 backdrop-blur-md border border-white/10 text-white/80 hover:text-white hover:bg-ink-950 transition"
+              aria-label="Close"
+            >
+              <X size={18} />
+            </button>
+
+            {/* Image area - object-contain shows the full image, no cropping */}
+            <div className="relative bg-ink-950 flex items-center justify-center min-h-[280px] md:min-h-[420px] max-h-[60vh]">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={imageIndex}
+                  src={project.images[imageIndex]}
+                  alt={`${project.title} - ${imageIndex + 1}`}
+                  className="max-w-full max-h-[60vh] w-auto h-auto object-contain"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </AnimatePresence>
+
+              {hasMultiple && (
+                <>
+                  <button
+                    onClick={() =>
+                      setImageIndex(
+                        (p) => (p - 1 + project.images.length) % project.images.length
+                      )
+                    }
+                    className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-ink-950/60 backdrop-blur-md border border-white/10 text-white hover:bg-ink-950 transition"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
+                  <button
+                    onClick={() =>
+                      setImageIndex((p) => (p + 1) % project.images.length)
+                    }
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-ink-950/60 backdrop-blur-md border border-white/10 text-white hover:bg-ink-950 transition"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
+
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+                    {project.images.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setImageIndex(i)}
+                        className={`h-1.5 rounded-full transition-all ${
+                          i === imageIndex
+                            ? "bg-accent-lime w-6"
+                            : "bg-white/30 w-1.5 hover:bg-white/60"
+                        }`}
+                        aria-label={`Go to image ${i + 1}`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Body - full text, no truncation */}
+            <div className="p-6 md:p-8 flex flex-col gap-5">
+              <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest2 text-white/60">
+                <span className="w-1 h-1 rounded-full bg-accent-lime" />
+                {project.category}
+              </div>
+
+              <h3 className="font-display text-3xl md:text-4xl font-bold text-white leading-tight">
+                {project.title}
+              </h3>
+
+              <p className="text-base text-white/70 leading-relaxed">
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap gap-1.5">
+                {project.tech.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-2.5 py-1 text-[10px] uppercase tracking-widest2 rounded-full bg-white/[0.04] border border-white/10 text-white/60"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-3 pt-1">
+                {project.link && project.link !== "#" ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-ink-950 text-xs uppercase tracking-widest2 hover:bg-accent-lime transition-colors duration-500"
+                  >
+                    <ExternalLink size={14} />
+                    Live
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 text-white/40 text-xs uppercase tracking-widest2 border border-white/10 cursor-not-allowed">
+                    Offline
+                  </span>
+                )}
+                {project.github && project.github !== "#" && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/5 transition text-xs uppercase tracking-widest2"
+                  >
+                    <Github size={14} />
+                    Code
+                  </a>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

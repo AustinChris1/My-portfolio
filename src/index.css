@@ -57,7 +57,7 @@ body {
   letter-spacing: -0.03em;
 }
 
-/* Text mask reveal — used by Hero scroll story */
+/* Text mask reveal - used by Hero scroll story */
 .mask-line {
   display: block;
   overflow: hidden;

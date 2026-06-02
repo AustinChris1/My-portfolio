@@ -648,45 +648,45 @@ const panels = [
   {
     eyebrow: "Smart agriculture",
     title: "Crops that\nspeak data.",
-    copy: "AgroSense360 — a multilingual rover system that monitors crop health with AI vision and IoT sensors, then advises farmers in their native language.",
+    copy: "AgroSense360 is a multilingual rover system that monitors crop health with AI vision and IoT sensors, then advises farmers in their native language.",
     image: Agrosense2,
   },
     {
     eyebrow: "Privacy Blockchain",
     title: "Privacy-first\nZK authentication.",
-    copy: "Sign In With Zcash (SIWZ) — The auth primitive Zcash didn't have. Non-custodial, drop-in, and built on what wallets already do, built for ZecHub Hackathon.",
+    copy: "Sign In With Zcash (SIWZ) is the auth primitive Zcash didn't have. Non-custodial, drop-in, and built on what wallets already do. Built for the ZecHub Hackathon.",
     image: siwz1,
   },
   {
     eyebrow: "Crypto Auto-trading Bot",
     title: "Automated trading\nmade simple.",
-    copy: "SyncTrade Bot — a telegram crypto trading bot with strategy backtesting, real-time market data, Technical and Fundamental analysis.",
+    copy: "SyncTrade Bot is a Telegram crypto trading bot with strategy backtesting, real-time market data, and technical and fundamental analysis.",
     image: SyncTradeBot1,
   },
   {
     eyebrow: "Education at scale",
     title: "A learning OS\nfor a generation.",
-    copy: "FirstDigit Academy LMS — full course management, enrollment, progress tracking and live interaction. Built end-to-end with React, Laravel and MySQL.",
+    copy: "FirstDigit Academy LMS handles full course management, enrollment, progress tracking and live interaction. Built end-to-end with React, Laravel and MySQL.",
     image: Lms2,
     align: "right",
   },
   {
     eyebrow: "Civic tech",
     title: "Find every\nschool. Anywhere.",
-    copy: "School Finder — a Nigeria-wide directory helping parents discover schools across every level of education, with rich filters and verified profiles.",
+    copy: "School Finder is a Nigeria-wide directory helping parents discover schools across every level of education, with rich filters and verified profiles.",
     image: schoolFinder1,
   },
   {
     eyebrow: "Commerce",
     title: "Storefronts\nthat convert.",
-    copy: "FirstSmart Mart — production e-commerce with cart, checkout, inventory and admin. Ship-ready UX, performant Laravel API.",
+    copy: "FirstSmart Mart is production e-commerce with cart, checkout, inventory and admin. Ship-ready UX on a performant Laravel API.",
     image: firstSmartMart1,
     align: "right",
   },
   {
     eyebrow: "Onchain",
     title: "Sweep the\nblockchain.",
-    copy: "Solana Token Sweeper — auto-detects and swaps non-SOL tokens to SOL in any given wallet. Speed-first DX.",
+    copy: "Solana Token Sweeper auto-detects and swaps non-SOL tokens to SOL in any given wallet, with a speed-first DX.",
     image: solSweep1,
     align: "right",
   },
@@ -749,7 +749,7 @@ const Hero = () => {
       ref={heroRef}
       className="relative w-full bg-ink-950 text-white"
     >
-      {/* Sticky backdrop — flow element, takes 100vh, sticks while parent is in view */}
+      {/* Sticky backdrop - flow element, takes 100vh, sticks while parent is in view */}
       <div
         ref={stickyRef}
         className="sticky top-0 left-0 w-full h-screen overflow-hidden z-0 pointer-events-none"
@@ -773,7 +773,7 @@ const Hero = () => {
         <Opening />
 
         <div className="relative w-full px-6 md:px-12 py-10 max-w-[1400px] mx-auto flex items-center justify-between text-white/45 text-xs uppercase tracking-widest2 border-t border-white/10">
-          <span>/01 — The Work</span>
+          <span>/01 · The Work</span>
           <span>Selected case studies</span>
         </div>
 

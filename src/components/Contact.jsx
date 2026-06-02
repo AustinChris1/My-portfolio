@@ -90,7 +90,7 @@ const Contact = () => {
         <div className="mb-20 text-center">
           <div className="overflow-hidden mb-4">
             <span className="inline-block text-xs uppercase tracking-widest2 text-accent-lime font-mono">
-              /03 — Contact
+              /03 · Contact
             </span>
           </div>
           <h2
