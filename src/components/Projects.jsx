@@ -46,6 +46,25 @@ import Lms4 from "../assets/Lms4.png";
 import Lms5 from "../assets/Lms5.png";
 import Lms6 from "../assets/Lms6.png";
 import Lms7 from "../assets/Lms7.png";
+import siwz1 from "../assets/siwz1.png";
+import siwz2 from "../assets/siwz2.png";
+import siwz3 from "../assets/siwz3.png";
+import siwz4 from "../assets/siwz4.png";
+import siwz5 from "../assets/siwz5.png";
+import siwz6 from "../assets/siwz6.png";
+import SyncTradeBot1 from "../assets/SyncTradeBot1.png";
+import SyncTradeBot2 from "../assets/SyncTradeBot2.png";
+import SyncTradeBot3 from "../assets/SyncTradeBot3.png";
+import SyncTradeBot4 from "../assets/SyncTradeBot4.png";
+import SyncTradeBot5 from "../assets/SyncTradeBot5.png";
+import SyncTradeBot6 from "../assets/SyncTradeBot6.png";
+import sohadan1 from "../assets/sohadan1.png";
+import sohadan2 from "../assets/sohadan2.png";
+import sohadan3 from "../assets/sohadan3.png";
+import sohadan4 from "../assets/sohadan4.png";
+import sohadan5 from "../assets/sohadan5.png";
+import DoorAccessControl from "../assets/DoorAccessControl.png";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,6 +78,45 @@ const projectsData = [
     link: "https://schoolfinderabj.web.app/",
     github: "#",
     category: "IoT & Hardware",
+  },
+  {
+    images: [siwz1, siwz2, siwz3, siwz4, siwz5, siwz6],
+    title: "Sign In With Zcash (SIWZ) + ZBooks",
+    description: "The auth primitive Zcash didn't have. Non-custodial, drop-in, and built on what wallets already do. ZBooks is the Accounting & payroll for shielded ZEC teams. Built for ZecHub Hackathon.",
+    tech: ["Next.js", "TailwindCSS", "TypeScript", "Zcash Improvement Proposals (ZIPs)", "ZingoLib"],
+    link: "https://siwz.vercel.app/",
+    github: "#",
+    category: "Blockchain",
+  },
+  {
+    images: [SyncTradeBot1, SyncTradeBot2, SyncTradeBot3, SyncTradeBot4, SyncTradeBot5, SyncTradeBot6],
+    title: "SyncTrade Bot",
+    description:
+      "A telegram crypto trading bot with strategy backtesting, real-time market data, Technical and Fundamental analysis.",
+    tech: ["Node.js", "Blockchain",],
+    link: "https://t.me/tradesyncobot/",
+    github: "#",
+    category: "Blockchain",
+  },
+  {
+    images: [DoorAccessControl],
+    title: "ESP32 Door Access Control Simulator",
+    description:
+      "A simulation of an ESP32-based door access control system.",
+    tech: ["Proteus"],
+    link: "#",
+    github: "#",
+    category: "IoT & Hardware",
+  },
+  {
+    images: [sohadan1, sohadan2, sohadan3, sohadan4, sohadan5],
+    title: "Smart Office and Home Automation Dealers Association of Nigeria (SOHADAN) Website",
+    description:
+      "A modern website for the Smart Office and Home Automation Dealers Association of Nigeria, providing information about their services and products.",
+    tech: ["React", "TailwindCSS", "Laravel", "MySQL", "GSAP"],
+    link: "https://sohadan.ng",
+    github: "#",
+    category: "Web Development",
   },
   {
     images: [Lms1, Lms2, Lms3, Lms4, Lms5, Lms6, Lms7],

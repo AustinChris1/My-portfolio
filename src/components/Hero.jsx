@@ -5,6 +5,8 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import avatar from "../assets/avatar.png";
 import Agrosense2 from "../assets/Agrosense2.jpeg";
+import siwz1 from "../assets/siwz1.png";
+import SyncTradeBot1 from "../assets/SyncTradeBot1.png";
 import Lms2 from "../assets/Lms2.png";
 import schoolFinder1 from "../assets/schoolfinder1.png";
 import firstSmartMart1 from "../assets/firstSmartMart1.png";
@@ -649,6 +651,18 @@ const panels = [
     copy: "AgroSense360 — a multilingual rover system that monitors crop health with AI vision and IoT sensors, then advises farmers in their native language.",
     image: Agrosense2,
   },
+    {
+    eyebrow: "Privacy Blockchain",
+    title: "Privacy-first\nZK authentication.",
+    copy: "Sign In With Zcash (SIWZ) — The auth primitive Zcash didn't have. Non-custodial, drop-in, and built on what wallets already do, built for ZecHub Hackathon.",
+    image: siwz1,
+  },
+  {
+    eyebrow: "Crypto Auto-trading Bot",
+    title: "Automated trading\nmade simple.",
+    copy: "SyncTrade Bot — a telegram crypto trading bot with strategy backtesting, real-time market data, Technical and Fundamental analysis.",
+    image: SyncTradeBot1,
+  },
   {
     eyebrow: "Education at scale",
     title: "A learning OS\nfor a generation.",
@@ -668,12 +682,6 @@ const panels = [
     copy: "FirstSmart Mart — production e-commerce with cart, checkout, inventory and admin. Ship-ready UX, performant Laravel API.",
     image: firstSmartMart1,
     align: "right",
-  },
-  {
-    eyebrow: "Community",
-    title: "Anchored\nto family.",
-    copy: "Family Anchor — a platform connecting families to local resources, support services and community events.",
-    image: FamilyAnchor1,
   },
   {
     eyebrow: "Onchain",
