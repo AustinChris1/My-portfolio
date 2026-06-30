@@ -113,7 +113,7 @@ const projectsData = [
     images: [SyncTradeBot1, SyncTradeBot2, SyncTradeBot3, SyncTradeBot4, SyncTradeBot5, SyncTradeBot6],
     title: "Theia Trading Bot",
     description:
-      "Theia reads the on-chain intent and the technical setup at the same time. It fuses exchange and insider wallet flows, liquidation cascades, token unlocks, macro events and multi-timeframe analysis into one confluence-scored signal, then optionally executes it on your own exchange account.",
+      "Theia is a multi-factor event-driven trading system. It reads the on-chain intent and the technical setup at the same time. It fuses exchange and insider wallet flows, liquidation cascades, token unlocks, macro events and multi-timeframe analysis into one confluence-scored signal, then optionally executes it on your own exchange account.",
     tech: ["Node.js", "Blockchain",],
     link: "https://theiatrading.vercel.app/",
     github: "#",

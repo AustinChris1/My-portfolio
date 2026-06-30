@@ -658,9 +658,9 @@ const panels = [
     image: siwz1,
   },
   {
-    eyebrow: "Crypto Auto-trading Bot",
+    eyebrow: "Crypto multi-factor event-driven trading system",
     title: "Automated trading\nmade simple.",
-    copy: "SyncTrade Bot is a Telegram crypto trading bot with strategy backtesting, real-time market data, and technical and fundamental analysis.",
+    copy: "Theia trading Bot is a Telegram crypto trading bot with strategy backtesting, real-time market data, and technical and fundamental analysis.",
     image: SyncTradeBot1,
   },
   {
