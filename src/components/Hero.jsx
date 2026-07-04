@@ -301,18 +301,6 @@ function Opening() {
     >
       <div className="op-content relative z-10 flex flex-col items-center text-center w-full max-w-5xl">
         {/* Eyebrow chips */}
-        <div className="op-eyebrow flex flex-wrap items-center justify-center gap-2 mb-8">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-md text-[11px] uppercase tracking-widest2 text-white/80">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-lime opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-lime" />
-            </span>
-            Available · {new Date().getFullYear()}
-          </span>
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-md text-[11px] uppercase tracking-widest2 text-white/80">
-            B.Eng (EEE) · Engineer
-          </span>
-        </div>
 
         {/* Avatar */}
         <div className="op-avatar relative mb-8">
