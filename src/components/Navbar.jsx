@@ -1,15 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { X, Menu, ArrowUpRight } from "lucide-react";
+import { X, Menu, ArrowUpRight, Download, ExternalLink, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import resumePdf from "../assets/Austin-Chris-Iwu-Resume.pdf";
+import cvPdf from "../assets/Austin-Chris-Iwu-CV.pdf";
 
 const navLinks = [
   { name: "Work", path: "projects" },
   { name: "Contact", path: "contact" },
 ];
 
+// Downloadable documents shown in the viewer modal
+const DOCS = {
+  resume: {
+    label: "Résumé",
+    file: resumePdf,
+    filename: "Austin-Chris-Iwu-Resume.pdf",
+    note: "Focused · for job applications",
+  },
+  cv: {
+    label: "CV",
+    file: cvPdf,
+    filename: "Austin-Chris-Iwu-CV.pdf",
+    note: "Full showcase · projects & more",
+  },
+};
+
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openDoc, setOpenDoc] = useState(null); // null | "resume" | "cv"
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -73,17 +92,26 @@ const Navbar = () => {
               </li>
             ))}
             <li>
-              <motion.a
-                href="https://resume.io/r/l605UVqBi"
-                target="_blank"
-                rel="noopener noreferrer"
+              <motion.button
+                onClick={() => setOpenDoc("cv")}
+                className="relative group px-4 py-2 text-sm uppercase tracking-widest2 text-white/70 hover:text-white transition-colors"
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                CV
+                <span className="absolute left-4 right-4 bottom-1 h-px bg-accent-lime origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+              </motion.button>
+            </li>
+            <li>
+              <motion.button
+                onClick={() => setOpenDoc("resume")}
                 className="ml-2 inline-flex items-center gap-2 bg-white text-ink-950 px-5 py-2.5 rounded-full text-sm font-medium uppercase tracking-widest2 hover:bg-accent-lime transition-colors duration-500"
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.97 }}
               >
                 Resume
                 <ArrowUpRight className="w-4 h-4" />
-              </motion.a>
+              </motion.button>
             </li>
           </ul>
 
@@ -163,24 +191,176 @@ const Navbar = () => {
                   </motion.li>
                 ))}
               </ul>
-              <motion.a
-                href="https://resume.io/r/l605UVqBi"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setToggle(false)}
-                className="mt-8 inline-flex items-center justify-between bg-white text-ink-950 px-6 py-5 rounded-2xl font-medium uppercase tracking-widest2"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45, duration: 0.5 }}
-              >
-                View Resume
-                <ArrowUpRight className="w-5 h-5" />
-              </motion.a>
+              <div className="mt-8 flex flex-col gap-3">
+                <motion.button
+                  onClick={() => {
+                    setToggle(false);
+                    setOpenDoc("resume");
+                  }}
+                  className="inline-flex items-center justify-between bg-white text-ink-950 px-6 py-5 rounded-2xl font-medium uppercase tracking-widest2"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.45, duration: 0.5 }}
+                >
+                  View Résumé
+                  <ArrowUpRight className="w-5 h-5" />
+                </motion.button>
+                <motion.button
+                  onClick={() => {
+                    setToggle(false);
+                    setOpenDoc("cv");
+                  }}
+                  className="inline-flex items-center justify-between border border-white/20 text-white px-6 py-5 rounded-2xl font-medium uppercase tracking-widest2 hover:bg-white/5 transition-colors"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.52, duration: 0.5 }}
+                >
+                  View CV
+                  <ArrowUpRight className="w-5 h-5" />
+                </motion.button>
+              </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
+
+      {/* Résumé / CV viewer + download */}
+      <DocsModal
+        open={!!openDoc}
+        initialDoc={openDoc || "resume"}
+        onClose={() => setOpenDoc(null)}
+      />
     </>
+  );
+};
+
+/* -------------------------------------------------------------------------- */
+/*                        Résumé / CV Viewer Modal                            */
+/* -------------------------------------------------------------------------- */
+
+const DocsModal = ({ open, initialDoc = "resume", onClose }) => {
+  const [active, setActive] = useState(initialDoc);
+
+  // Match the active tab to whichever button opened the modal
+  useEffect(() => {
+    if (open) setActive(initialDoc);
+  }, [open, initialDoc]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open, onClose]);
+
+  const doc = DOCS[active] || DOCS.resume;
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${doc.label} — Austin-Chris Iwu`}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-ink-950/80 backdrop-blur-md" />
+
+          {/* Panel */}
+          <motion.div
+            className="relative z-10 w-full max-w-4xl h-[90vh] flex flex-col bg-ink-900 border border-white/10 rounded-3xl shadow-2xl overflow-hidden"
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 20 }}
+            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header bar */}
+            <div className="flex items-center justify-between gap-3 px-4 md:px-6 py-4 border-b border-white/10 shrink-0">
+              {/* Left: icon + tabs + note */}
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="hidden sm:flex w-9 h-9 rounded-xl bg-accent-lime text-ink-950 items-center justify-center shrink-0">
+                  <FileText size={18} />
+                </div>
+                <div className="flex items-center gap-1 p-1 rounded-full bg-white/5 border border-white/10 shrink-0">
+                  {Object.entries(DOCS).map(([key, d]) => (
+                    <button
+                      key={key}
+                      onClick={() => setActive(key)}
+                      className={`px-3.5 py-1.5 rounded-full text-xs uppercase tracking-widest2 transition-colors ${
+                        active === key
+                          ? "bg-accent-lime text-ink-950 font-medium"
+                          : "text-white/60 hover:text-white"
+                      }`}
+                    >
+                      {d.label}
+                    </button>
+                  ))}
+                </div>
+                <span className="hidden lg:block text-[11px] uppercase tracking-widest2 text-white/40 truncate">
+                  {doc.note}
+                </span>
+              </div>
+
+              {/* Right: actions */}
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href={doc.file}
+                  download={doc.filename}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-lime text-ink-950 text-xs uppercase tracking-widest2 font-medium hover:brightness-105 transition"
+                >
+                  <Download size={14} />
+                  <span className="hidden sm:inline">Download {doc.label}</span>
+                </a>
+                <a
+                  href={doc.file}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/5 transition"
+                  aria-label={`Open ${doc.label} in new tab`}
+                >
+                  <ExternalLink size={15} />
+                </a>
+                <button
+                  onClick={onClose}
+                  className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/5 transition"
+                  aria-label="Close"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+            </div>
+
+            {/* PDF viewer */}
+            <div className="relative flex-1 bg-ink-950">
+              <iframe
+                key={active}
+                src={`${doc.file}#view=FitH`}
+                title={`Austin-Chris Iwu ${doc.label}`}
+                className="absolute inset-0 w-full h-full"
+              />
+              {/* Fallback hint for mobile browsers that block inline PDF */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4 text-center sm:hidden">
+                <span className="pointer-events-auto inline-block text-[11px] text-white/60 bg-ink-900/85 border border-white/10 rounded-full px-3 py-1.5">
+                  Can’t see it? Tap “Download” above.
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Austin-Chris Iwu — CV</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --ink:#0f1115;
+    --body:#33383f;
+    --muted:#6b7280;
+    --line:#e6e8eb;
+    --lime:#c8ff3e;
+    --lime-deep:#557a05;
+    --accent:#0b6b63;
+    --paper:#ffffff;
+  }
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--body);background:#eef0f2;line-height:1.5;font-size:10.2pt;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .toolbar{
+    position:sticky;top:0;z-index:50;display:flex;justify-content:center;gap:10px;
+    padding:14px;background:rgba(15,17,21,.9);backdrop-filter:blur(8px);
+  }
+  .toolbar button{
+    font:inherit;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    color:#0f1115;background:var(--lime);border:0;border-radius:999px;padding:9px 18px;cursor:pointer;
+    transition:transform .15s ease, filter .15s ease;
+  }
+  .toolbar button:hover{transform:translateY(-1px);filter:brightness(1.05)}
+  .toolbar span{color:rgba(255,255,255,.55);font-size:11px;align-self:center}
+
+  .page{
+    width:210mm;min-height:297mm;margin:22px auto;padding:15mm 16mm;
+    background:var(--paper);box-shadow:0 18px 50px rgba(0,0,0,.18);
+  }
+
+  /* ===== Header ===== */
+  header{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:16px}
+  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .name{font-size:30pt;font-weight:800;line-height:1;color:var(--ink);letter-spacing:-.02em}
+  .name .dot{color:var(--lime-deep)}
+  .role{margin-top:6px;font-size:12pt;font-weight:600;color:var(--accent)}
+  .idcard{
+    text-align:right;font-size:8.8pt;color:var(--muted);line-height:1.7;flex:none;padding-top:4px;
+  }
+  .idcard b{color:var(--ink)}
+  .contact{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:9.3pt;color:var(--body)}
+  .contact a{color:var(--body);text-decoration:none}
+  .contact .item{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .contact svg{width:12px;height:12px;flex:none;color:var(--lime-deep)}
+
+  /* ===== Sections ===== */
+  section{margin-top:16px}
+  .sec-title{
+    display:flex;align-items:center;gap:9px;font-size:9pt;font-weight:700;text-transform:uppercase;
+    letter-spacing:.16em;color:var(--ink);margin-bottom:10px;
+  }
+  .sec-title::before{content:"";width:13px;height:13px;background:var(--lime);border-radius:3px;flex:none}
+  .sec-title::after{content:"";flex:1;height:1px;background:var(--line)}
+
+  .summary{font-size:10.3pt}
+  .summary b{color:var(--ink);font-weight:700}
+
+  /* ===== Experience ===== */
+  .job{margin-bottom:13px}
+  .job:last-child{margin-bottom:0}
+  .job-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .job-title{font-size:10.8pt;font-weight:700;color:var(--ink)}
+  .job-title .at{color:var(--accent)}
+  .job-meta{font-size:9pt;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .job-sub{font-size:9.2pt;color:var(--muted);font-style:italic;margin-top:1px}
+  ul.bullets{list-style:none;margin-top:6px}
+  ul.bullets li{position:relative;padding-left:15px;margin-bottom:4px;font-size:9.9pt}
+  ul.bullets li::before{content:"";position:absolute;left:0;top:.52em;width:5px;height:5px;border:1.4px solid var(--lime-deep);border-radius:50%}
+  ul.bullets li b{color:var(--ink);font-weight:700}
+
+  /* ===== Project groups ===== */
+  .pgroup{margin-bottom:11px}
+  .pgroup:last-child{margin-bottom:0}
+  .pgroup-label{
+    font-size:8.4pt;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--lime-deep);
+    margin-bottom:5px;
+  }
+  .proj{margin-bottom:7px;padding-left:11px;position:relative}
+  .proj::before{content:"";position:absolute;left:0;top:.5em;width:4px;height:4px;background:var(--lime);border-radius:50%}
+  .proj:last-child{margin-bottom:0}
+  .proj-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .proj-name{font-size:9.9pt;font-weight:700;color:var(--ink)}
+  .proj-link{font-size:8.4pt;color:var(--accent);text-decoration:none;white-space:nowrap}
+  .proj-desc{font-size:9.3pt;color:var(--body);margin-top:1px}
+  .proj-desc .stack{color:var(--muted);font-style:italic}
+
+  /* ===== Two-col blocks ===== */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px 26px}
+  .skill-block .k{font-size:8.6pt;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);margin-bottom:2px}
+  .skill-block .v{font-size:9.4pt;color:var(--body);margin-bottom:8px}
+
+  .edu{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:7px}
+  .edu-deg{font-size:10.2pt;font-weight:700;color:var(--ink)}
+  .edu-school{font-size:9.2pt;color:var(--muted)}
+  .edu-meta{font-size:9pt;color:var(--muted);white-space:nowrap;text-align:right}
+  .edu-note{font-size:9.1pt;color:var(--body);margin:-2px 0 8px}
+  .edu-note b{color:var(--ink)}
+
+  .pill-row{display:flex;flex-wrap:wrap;gap:6px}
+  .pill{font-size:8.6pt;color:var(--body);background:#f4f6f2;border:1px solid #e7ebe0;border-radius:999px;padding:3px 10px}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .mini-title{font-size:8.6pt;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);margin-bottom:6px}
+  .lang{display:flex;justify-content:space-between;font-size:9.4pt;margin-bottom:3px}
+  .lang .lvl{color:var(--muted)}
+
+  footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);
+    font-size:8.4pt;color:var(--muted);display:flex;justify-content:space-between}
+
+  @page{size:A4;margin:0}
+  @media print{
+    body{background:#fff}
+    .toolbar{display:none}
+    .page{margin:0;box-shadow:none;width:auto;min-height:auto;padding:11mm 14mm}
+    section,.job,.pgroup{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar no-print">
+  <button onclick="window.print()">⬇ Save as PDF</button>
+  <span>Print dialog → “Save as PDF” · A4 · this CV is ~2 pages</span>
+</div>
+
+<div class="page">
+
+  <!-- ===================== HEADER ===================== -->
+  <header>
+    <div class="top">
+      <div>
+        <div class="name">Austin-Chris Iwu<span class="dot">.</span></div>
+        <div class="role">Full-Stack Developer &amp; Embedded Systems Engineer</div>
+      </div>
+      <div class="idcard">
+        <div><b>Owerri, Nigeria</b></div>
+        <div>B.Eng · Electrical &amp; Electronics</div>
+        <div>Nigerian · Available worldwide (remote)</div>
+      </div>
+    </div>
+    <div class="contact">
+      <span class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 6 8-6"/></svg>
+        <a href="mailto:austinchrisiwu@gmail.com">austinchrisiwu@gmail.com</a>
+      </span>
+      <span class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+        +234 806 243 9424
+      </span>
+      <span class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.9 1.3 5.9 1.6 5.9 1.6a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.5 8c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+        <a href="https://github.com/AustinChris1">github.com/AustinChris1</a>
+      </span>
+      <span class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v5M8 8v.01M12 16v-3a2 2 0 0 1 4 0v3"/></svg>
+        <a href="https://linkedin.com/in/austinchris1">linkedin.com/in/austinchris1</a>
+      </span>
+      <span class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M18 4 6 20M6 4l12 16" opacity="0"/><path d="M3 3l7.5 10L3.5 21H6l6-7 5 7h4l-8-11 7.2-7H18l-5 5.6L9 3z"/></svg>
+        <a href="https://x.com/AustinChris_">@AustinChris_</a>
+      </span>
+      <span class="item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+        <a href="https://wxxtn-yqaaa-aaaaf-qamrq-cai.icp0.io">Portfolio</a>
+      </span>
+    </div>
+  </header>
+
+  <!-- ===================== PROFILE ===================== -->
+  <section>
+    <div class="sec-title">Profile</div>
+    <p class="summary">
+      Innovative <b>Full-Stack Developer and Embedded Systems Engineer</b> who builds end-to-end products that merge
+      hardware intelligence with powerful software. My work spans production <b>React / Laravel</b> web platforms
+      (LMS, e-commerce, directories), <b>ESP32 / IoT</b> systems, computer-vision apps, and <b>AI-driven blockchain</b>
+      tooling. I’ve shipped 30+ projects — from an <b>AI + IoT multilingual crop-monitoring rover</b> to hackathon
+      builds on <b>Zcash</b> and <b>0G</b> — and I’m happiest solving real-world problems in agriculture, automation,
+      fintech and security. Driven by curiosity, engineering rigour, and shipping things that actually work.
+    </p>
+  </section>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section>
+    <div class="sec-title">Experience</div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-title">Software Developer <span class="at">· First Digit Communications Ltd.</span></div>
+        <div class="job-meta">Sep 2024 – Present</div>
+      </div>
+      <div class="job-sub">Abuja, Nigeria · Full-stack &amp; embedded delivery</div>
+      <ul class="bullets">
+        <li>Built and shipped <b>FirstDigit Academy</b>, a full learning-management system with course management, student enrollment, progress tracking and interactive learning — React, Laravel &amp; MySQL.</li>
+        <li>Developed <b>FirstSmart Mart</b>, a production e-commerce platform (cart, checkout, inventory, admin dashboard) integrating <b>Paystack</b> and bank-transfer payments on a Laravel API.</li>
+        <li>Engineered a <b>face-recognition security &amp; Telegram alerting</b> system using Node.js, face-api.js and <b>ESP32-CAM</b> for real-time suspect detection.</li>
+        <li>Built <b>School Finder</b>, a Nigeria-wide school directory with rich filters and verified profiles, plus the <b>SOHADAN</b> association site and the First Digit corporate website.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-title">Independent Developer <span class="at">· Full-Stack, IoT &amp; Blockchain</span></div>
+        <div class="job-meta">2021 – Present</div>
+      </div>
+      <div class="job-sub">Self-directed product engineering &amp; hackathons</div>
+      <ul class="bullets">
+        <li>Designed and delivered <b>AgroSense360</b> — an AI + IoT multilingual rover for smart crop-health monitoring &amp; advisory, combining AI vision, IoT sensors and a native-language advisory layer.</li>
+        <li>Competed in blockchain hackathons — <b>Sign In With Zcash</b> (ZecHub) and <b>OG Receipts</b> (0G Zero Cup 2026) — shipping novel authentication and verifiable-AI primitives under deadline.</li>
+        <li>Built and deployed crypto/blockchain tooling across <b>Solana</b>, <b>Internet Computer (Motoko)</b> and event-driven trading, alongside numerous responsive React + Tailwind interfaces.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== SELECTED PROJECTS ===================== -->
+  <section>
+    <div class="sec-title">Selected Projects</div>
+
+    <div class="pgroup">
+      <div class="pgroup-label">AI, IoT &amp; Embedded Systems</div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-name">AgroSense360 — AI &amp; IoT Multilingual Rover</div></div>
+        <div class="proj-desc">Smart crop-health monitoring &amp; advisory: AI vision + IoT sensors on a rover that advises farmers in their native language. <span class="stack">React · Firebase · ESP32 · Arduino · Python</span></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-name">Atelier Fit — Virtual Body Measurement</div><a class="proj-link" href="https://body-measurement-green.vercel.app">live ↗</a></div>
+        <div class="proj-desc">Estimates every tailoring measurement from two phone photos + height, suggests a ready-to-wear size and exports a measurement card. <span class="stack">React · Tailwind · Google MediaPipe</span></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-name">Attendance System — RFID + ESP32-CAM</div><a class="proj-link" href="https://github.com/AustinChris1/AttendanceSystem">code ↗</a></div>
+        <div class="proj-desc">Attendance tracking with real-time analytics and automated reporting. <span class="stack">React · Firebase · ESP32-CAM</span></div>
+      </div>
+    </div>
+
+    <div class="pgroup">
+      <div class="pgroup-label">Blockchain &amp; Web3</div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-name">Sign In With Zcash (SIWZ) + ZBooks</div><a class="proj-link" href="https://siwz.vercel.app/">live ↗</a></div>
+        <div class="proj-desc">Non-custodial, drop-in wallet auth primitive for Zcash, plus accounting &amp; payroll for shielded-ZEC teams. ZecHub Hackathon. <span class="stack">Next.js · TypeScript · ZIPs · ZingoLib</span></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-name">OG Receipts — Verifiable AI Track Records</div><a class="proj-link" href="https://0greceipts.vercel.app/">live ↗</a></div>
+        <div class="proj-desc">Tamper-proof AI predictions via TEE Sealed Inference on 0G Compute, timestamped on-chain to 0G Storage. 0G Zero Cup 2026. <span class="stack">Next.js · 0G Compute · 0G Storage</span></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-name">Theia Trading Bot</div><a class="proj-link" href="https://theiatrading.vercel.app/">live ↗</a></div>
+        <div class="proj-desc">Multi-factor, event-driven trading system fusing on-chain flows, liquidations, unlocks and macro into one confluence-scored signal. <span class="stack">Node.js · Blockchain</span></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-name">Solana Token Sweeper &amp; Motoko Student Wall</div><a class="proj-link" href="https://github.com/AustinChris1/SolSweep">code ↗</a></div>
+        <div class="proj-desc">Auto-swaps non-SOL tokens to SOL in any wallet; plus a decentralized student forum on the Internet Computer. <span class="stack">Solana · Motoko · Internet Computer</span></div>
+      </div>
+    </div>
+
+    <div class="pgroup">
+      <div class="pgroup-label">Full-Stack Web Platforms</div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-name">FirstDigit Academy (LMS)</div><a class="proj-link" href="https://acad.firstdigit.com.ng">live ↗</a></div>
+        <div class="proj-desc">Full learning-management system: courses, enrollment, progress tracking &amp; interactive learning. <span class="stack">React · Laravel · MySQL</span></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-name">FirstSmart Mart &amp; School Finder</div><a class="proj-link" href="https://schoolfinderabuja.com/">live ↗</a></div>
+        <div class="proj-desc">Production e-commerce with payments, and a Nigeria-wide school directory with verified profiles. <span class="stack">React · Laravel · MySQL · Paystack</span></div>
+      </div>
+      <div class="proj">
+        <div class="proj-top"><div class="proj-name">SOHADAN &amp; First Digit Websites</div><a class="proj-link" href="https://sohadan.ng">live ↗</a></div>
+        <div class="proj-desc">Association and corporate marketing sites with animated, high-performance interfaces. <span class="stack">React · Laravel · GSAP · MySQL</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section>
+    <div class="sec-title">Technical Skills</div>
+    <div class="cols">
+      <div>
+        <div class="skill-block"><div class="k">Languages</div><div class="v">JavaScript, TypeScript, PHP, Python, C/C++ (Arduino/ESP32), SQL, Motoko, HTML, CSS</div></div>
+        <div class="skill-block"><div class="k">Frontend</div><div class="v">React, Next.js, TailwindCSS, GSAP, Three.js, Framer Motion, Bootstrap</div></div>
+        <div class="skill-block"><div class="k">Backend &amp; Data</div><div class="v">Laravel, Node.js, REST APIs, MySQL, Firebase</div></div>
+      </div>
+      <div>
+        <div class="skill-block"><div class="k">Embedded &amp; IoT</div><div class="v">ESP32, ESP32-CAM, Arduino, Raspberry Pi, IoT sensors, Proteus, MediaPipe, face-api.js</div></div>
+        <div class="skill-block"><div class="k">Blockchain</div><div class="v">Solana, Internet Computer (Motoko), Zcash (ZIPs, ZingoLib), 0G (Compute / Storage / TEE)</div></div>
+        <div class="skill-block"><div class="k">Tools &amp; Practices</div><div class="v">Git, Linux, Vite, Vercel, Cloud Deployment, Telegram Bots, Paystack, REST APIs</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION ===================== -->
+  <section>
+    <div class="sec-title">Education</div>
+    <div class="edu">
+      <div>
+        <div class="edu-deg">B.Eng. Electrical &amp; Electronics Engineering</div>
+        <div class="edu-school">Federal University of Technology, Owerri (FUTO) · Electronics &amp; Computing major</div>
+      </div>
+      <div class="edu-meta">Aug 2021 – Oct 2025</div>
+    </div>
+    <div class="edu-note"><b>Final-Year Project:</b> AgroSense360 — AI &amp; IoT-based multilingual rover for smart crop-health monitoring and advisory.</div>
+    <div class="edu">
+      <div>
+        <div class="edu-deg">WASSCE — Senior Secondary Certificate</div>
+        <div class="edu-school">Federal Government College, Okigwe</div>
+      </div>
+      <div class="edu-meta">2014 – 2020</div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER STRIP ===================== -->
+  <section>
+    <div class="two">
+      <div>
+        <div class="mini-title">Highlights</div>
+        <div class="pill-row">
+          <span class="pill">30+ projects shipped</span>
+          <span class="pill">2× hackathon builder</span>
+          <span class="pill">Web + hardware + chain</span>
+          <span class="pill">B.Eng graduate</span>
+        </div>
+      </div>
+      <div>
+        <div class="mini-title">Languages</div>
+        <div class="lang"><span>English</span><span class="lvl">Fluent · Professional</span></div>
+        <div class="lang"><span>Igbo</span><span class="lvl">Native</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Austin-Chris Iwu · Full-Stack &amp; Embedded Systems Engineer</span>
+    <span>References available on request</span>
+  </footer>
+
+</div>
+</body>
+</html>
