@@ -344,6 +344,14 @@ const DocsModal = ({ open, initialDoc = "resume", onClose }) => {
 
             {/* PDF viewer */}
             <div className="relative flex-1 bg-ink-950">
+              <a
+                href={doc.file}
+                download={doc.filename}
+                className="absolute right-4 top-4 z-10 inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-accent-lime text-ink-950 text-xs uppercase tracking-widest2 font-semibold shadow-2xl shadow-black/30 hover:brightness-105 transition"
+              >
+                <Download size={14} />
+                Download PDF
+              </a>
               <iframe
                 key={active}
                 src={`${doc.file}#view=FitH`}
