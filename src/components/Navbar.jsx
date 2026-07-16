@@ -1,27 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { X, Menu, ArrowUpRight, Download, ExternalLink, FileText } from "lucide-react";
+import { X, Menu, ArrowUpRight, Download } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import resumePdf from "../assets/Austin-Chris-Iwu-Resume.pdf";
 import cvPdf from "../assets/Austin-Chris-Iwu-CV.pdf";
+import resumeHtml from "../../documents/Austin-Chris-Iwu-Resume.html?raw";
+import cvHtml from "../../documents/Austin-Chris-Iwu-CV.html?raw";
 
 const navLinks = [
   { name: "Work", path: "projects" },
   { name: "Contact", path: "contact" },
 ];
 
-// Downloadable documents shown in the viewer modal
+// The document renders inline inside a scoped iframe, so its own Download/Print
+// bar is hidden — the viewer supplies floating controls instead. The <base> stops
+// in-document links from navigating the iframe itself.
+const forEmbed = (html) =>
+  html.replace(
+    "</head>",
+    '<base target="_blank"><style>.actions{display:none!important}</style></head>'
+  );
+
+// Documents shown in the viewer modal
 const DOCS = {
   resume: {
     label: "Résumé",
     file: resumePdf,
     filename: "Austin-Chris-Iwu-Resume.pdf",
-    note: "Focused · for job applications",
+    html: forEmbed(resumeHtml),
   },
   cv: {
     label: "CV",
     file: cvPdf,
     filename: "Austin-Chris-Iwu-CV.pdf",
-    note: "Full showcase · projects & more",
+    html: forEmbed(cvHtml),
   },
 };
 
@@ -277,93 +288,57 @@ const DocsModal = ({ open, initialDoc = "resume", onClose }) => {
           {/* Backdrop */}
           <div className="absolute inset-0 bg-ink-950/80 backdrop-blur-md" />
 
-          {/* Panel */}
+          {/* Panel — the document renders immediately, controls float over it */}
           <motion.div
-            className="relative z-10 w-full max-w-4xl h-[90vh] flex flex-col bg-ink-900 border border-white/10 rounded-3xl shadow-2xl overflow-hidden"
+            className="relative z-10 w-full max-w-4xl h-[90vh] bg-[#eef2f6] rounded-3xl shadow-2xl overflow-hidden"
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 20 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header bar */}
-            <div className="flex items-center justify-between gap-3 px-4 md:px-6 py-4 border-b border-white/10 shrink-0">
-              {/* Left: icon + tabs + note */}
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="hidden sm:flex w-9 h-9 rounded-xl bg-accent-lime text-ink-950 items-center justify-center shrink-0">
-                  <FileText size={18} />
-                </div>
-                <div className="flex items-center gap-1 p-1 rounded-full bg-white/5 border border-white/10 shrink-0">
-                  {Object.entries(DOCS).map(([key, d]) => (
-                    <button
-                      key={key}
-                      onClick={() => setActive(key)}
-                      className={`px-3.5 py-1.5 rounded-full text-xs uppercase tracking-widest2 transition-colors ${
-                        active === key
-                          ? "bg-accent-lime text-ink-950 font-medium"
-                          : "text-white/60 hover:text-white"
-                      }`}
-                    >
-                      {d.label}
-                    </button>
-                  ))}
-                </div>
-                <span className="hidden lg:block text-[11px] uppercase tracking-widest2 text-white/40 truncate">
-                  {doc.note}
-                </span>
-              </div>
+            {/* The document itself — rendered inline, no address bar, no PDF chrome */}
+            <iframe
+              key={active}
+              srcDoc={doc.html}
+              title={`Austin-Chris Iwu ${doc.label}`}
+              className="absolute inset-0 w-full h-full border-0"
+            />
 
-              {/* Right: actions */}
-              <div className="flex items-center gap-2 shrink-0">
-                <a
-                  href={doc.file}
-                  download={doc.filename}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-lime text-ink-950 text-xs uppercase tracking-widest2 font-medium hover:brightness-105 transition"
-                >
-                  <Download size={14} />
-                  <span className="hidden sm:inline">Download {doc.label}</span>
-                </a>
-                <a
-                  href={doc.file}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/5 transition"
-                  aria-label={`Open ${doc.label} in new tab`}
-                >
-                  <ExternalLink size={15} />
-                </a>
+            {/* Floating doc switcher */}
+            <div className="absolute top-4 left-4 z-10 flex items-center gap-1 p-1 rounded-full bg-ink-950/90 backdrop-blur-md border border-white/10 shadow-xl">
+              {Object.entries(DOCS).map(([key, d]) => (
                 <button
-                  onClick={onClose}
-                  className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/5 transition"
-                  aria-label="Close"
+                  key={key}
+                  onClick={() => setActive(key)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs uppercase tracking-widest2 transition-colors ${
+                    active === key
+                      ? "bg-accent-lime text-ink-950 font-medium"
+                      : "text-white/60 hover:text-white"
+                  }`}
                 >
-                  <X size={16} />
+                  {d.label}
                 </button>
-              </div>
+              ))}
             </div>
 
-            {/* PDF viewer */}
-            <div className="relative flex-1 bg-ink-950">
+            {/* Floating actions */}
+            <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
               <a
                 href={doc.file}
                 download={doc.filename}
-                className="absolute right-4 top-4 z-10 inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-accent-lime text-ink-950 text-xs uppercase tracking-widest2 font-semibold shadow-2xl shadow-black/30 hover:brightness-105 transition"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-accent-lime text-ink-950 text-xs uppercase tracking-widest2 font-semibold shadow-2xl shadow-black/30 hover:brightness-105 transition"
               >
                 <Download size={14} />
-                Download PDF
+                <span className="hidden sm:inline">Download PDF</span>
               </a>
-              <iframe
-                key={active}
-                src={`${doc.file}#view=FitH`}
-                title={`Austin-Chris Iwu ${doc.label}`}
-                className="absolute inset-0 w-full h-full"
-              />
-              {/* Fallback hint for mobile browsers that block inline PDF */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 p-4 text-center sm:hidden">
-                <span className="pointer-events-auto inline-block text-[11px] text-white/60 bg-ink-900/85 border border-white/10 rounded-full px-3 py-1.5">
-                  Can’t see it? Tap “Download” above.
-                </span>
-              </div>
+              <button
+                onClick={onClose}
+                className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-ink-950/90 backdrop-blur-md border border-white/10 text-white/80 hover:text-white shadow-xl transition"
+                aria-label="Close"
+              >
+                <X size={16} />
+              </button>
             </div>
           </motion.div>
         </motion.div>

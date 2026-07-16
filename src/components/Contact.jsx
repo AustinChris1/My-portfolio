@@ -14,6 +14,13 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Lucide has no Telegram mark, so use the brand glyph directly
+const Telegram = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" />
+  </svg>
+);
+
 const socialLinks = [
   {
     href: "https://x.com/AustinChris_",
@@ -32,6 +39,12 @@ const socialLinks = [
     icon: Linkedin,
     label: "LinkedIn",
     handle: "austinchris1",
+  },
+  {
+    href: "https://t.me/thatcreator",
+    icon: Telegram,
+    label: "Telegram",
+    handle: "@thatcreator",
   },
 ];
 
@@ -181,7 +194,7 @@ const Contact = () => {
           <div className="text-xs uppercase tracking-widest2 text-white/50 mb-6 text-center">
             Find me elsewhere
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {socialLinks.map((s) => (
               <motion.a
                 key={s.label}

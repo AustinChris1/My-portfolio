@@ -23,16 +23,6 @@ const Loader = () => {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      {/* Faint grid */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-
       {/* Center mark */}
       <div className="relative flex flex-col items-center gap-12">
         <div className="relative">
