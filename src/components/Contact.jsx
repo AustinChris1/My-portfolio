@@ -103,7 +103,7 @@ const Contact = () => {
         <div className="mb-20 text-center">
           <div className="overflow-hidden mb-4">
             <span className="inline-block text-xs uppercase tracking-widest2 text-accent-lime font-mono">
-              /03 · Contact
+              /04 · Contact
             </span>
           </div>
           <h2
@@ -225,6 +225,9 @@ const Contact = () => {
         <div className="mt-24 pt-10 border-t border-white/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40 uppercase tracking-widest2">
             <span>© {new Date().getFullYear()} Austin-Chris · B.Eng (EEE)</span>
+            <span className="normal-case tracking-normal text-white/30">
+              Full-stack · Embedded · Onchain
+            </span>
           </div>
         </div>
       </div>

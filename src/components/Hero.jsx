@@ -7,11 +7,7 @@ import avatar from "../assets/avatar.png";
 import Agrosense2 from "../assets/Agrosense2.jpeg";
 import siwz1 from "../assets/siwz1.png";
 import SyncTradeBot1 from "../assets/SyncTradeBot1.png";
-import Lms2 from "../assets/Lms2.png";
-import schoolFinder1 from "../assets/schoolfinder1.png";
-import firstSmartMart1 from "../assets/firstSmartMart1.png";
-import FamilyAnchor1 from "../assets/familyanchor1.png";
-import solSweep1 from "../assets/SolSweep1.png";
+import OGReceipts1 from "../assets/OGReceipts1.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +22,10 @@ function ThreeBackdrop({ progressRef }) {
 
   useEffect(() => {
     if (!mountRef.current) return;
+    // Skip WebGL when user prefers reduced motion or no WebGL
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+
     const mount = mountRef.current;
 
     const scene = new THREE.Scene();
@@ -297,24 +297,31 @@ function Opening() {
   return (
     <section
       ref={rootRef}
-      className="relative w-full h-screen flex items-center justify-center px-6"
+      className="relative w-full min-h-screen flex items-center justify-center px-6 pt-28 pb-28 md:pt-32 md:pb-32"
     >
       <div className="op-content relative z-10 flex flex-col items-center text-center w-full max-w-5xl">
-        {/* Eyebrow chips */}
-
-        {/* Avatar */}
-        <div className="op-avatar relative mb-8">
-          <div className="absolute inset-0 rounded-full blur-3xl bg-accent-lime/30 scale-150" />
-          <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-accent-lime via-white/30 to-accent-sky opacity-60 blur-md" />
-          <img
-            src={avatar}
-            alt="Austin-Chris"
-            className="relative w-24 h-24 md:w-28 md:h-28 rounded-full object-cover ring-2 ring-white/20"
+        {/* Avatar: glow sits outside the clip, image is a true circle */}
+        <div className="op-avatar relative mb-6 md:mb-8">
+          <div
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 md:w-48 md:h-48 rounded-full bg-accent-lime/25 blur-3xl"
+            aria-hidden
           />
+          <div
+            className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[7.25rem] h-[7.25rem] md:w-[8.25rem] md:h-[8.25rem] rounded-full bg-gradient-to-br from-accent-lime/50 via-white/20 to-accent-sky/50 blur-sm"
+            aria-hidden
+          />
+          <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden ring-2 ring-white/25 shadow-[0_0_0_4px_rgba(5,5,5,0.85)] bg-ink-900">
+            <img
+              src={avatar}
+              alt="Austin-Chris"
+              className="block w-full h-full object-cover object-center"
+              draggable={false}
+            />
+          </div>
         </div>
 
         {/* Greeting */}
-        <p className="op-greet flex items-center justify-center gap-3 text-base md:text-lg text-white/70 mb-6">
+        <p className="op-greet flex items-center justify-center gap-3 text-base md:text-lg text-white/70 mb-4 md:mb-5">
           Hello
           <motion.span
             className="inline-block"
@@ -326,9 +333,9 @@ function Opening() {
           I'm Austin-Chris
         </p>
 
-        {/* Title */}
-        <h1 className="op-title font-display font-bold leading-[0.9] text-[14vw] md:text-[9vw] lg:text-[8.5vw] text-white">
-          <span className="block bg-gradient-to-r from-accent-lime via-white to-accent-sky bg-clip-text text-transparent">
+        {/* Title: solid lime first line so it never vanishes behind gradient/clip quirks */}
+        <h1 className="op-title font-display font-bold leading-[0.92] text-[11vw] sm:text-[9vw] md:text-[7.5vw] lg:text-[6.5vw] text-white">
+          <span className="block text-accent-lime">
             <SplitWords text="Full-Stack" />
           </span>
           <span className="block">
@@ -337,19 +344,19 @@ function Opening() {
         </h1>
 
         {/* Subtitle */}
-        <p className="op-subtitle font-display text-2xl md:text-4xl text-white/80 mt-4 leading-tight">
+        <p className="op-subtitle font-display text-xl md:text-3xl lg:text-4xl text-white/80 mt-3 md:mt-4 leading-tight">
           <span className="block">& Embedded Systems Engineer</span>
         </p>
 
         {/* Copy */}
-        <p className="op-copy mt-8 max-w-2xl text-base md:text-lg text-white/55 leading-relaxed">
+        <p className="op-copy mt-6 md:mt-8 max-w-2xl text-sm md:text-base lg:text-lg text-white/55 leading-relaxed">
           B.Eng (EEE) trained engineer crafting innovative digital solutions that
           seamlessly integrate cutting-edge web technologies with sophisticated
           embedded systems architecture.
         </p>
 
         {/* CTAs */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-8 md:mt-10 flex flex-wrap items-center justify-center gap-3 md:gap-4">
           <a
             href="#projects"
             onClick={(e) => {
@@ -366,25 +373,29 @@ function Opening() {
             </span>
           </a>
           <a
-            href="https://x.com/AustinChris_"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("contact")?.scrollIntoView({
+                behavior: "smooth",
+              });
+            }}
             className="op-cta group inline-flex items-center gap-3 px-7 py-3.5 rounded-full border border-white/20 text-white text-sm uppercase tracking-widest2 hover:bg-white/5 transition-all duration-500"
           >
-            Let's connect
+            Get in touch
             <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">
               →
             </span>
           </a>
         </div>
+      </div>
 
-        {/* Scroll cue */}
-        <div className="op-cue absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-white/40 text-[10px] uppercase tracking-widest2">
-          <span>Scroll to explore</span>
-          <span className="relative h-10 w-[1px] bg-white/20 overflow-hidden">
-            <span className="absolute top-0 left-0 w-full h-1/2 bg-accent-lime [animation:slide_2.4s_ease-in-out_infinite]" />
-          </span>
-        </div>
+      {/* Scroll cue lives on the section, not inside the content stack */}
+      <div className="op-cue absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-white/40 text-[10px] uppercase tracking-widest2 pointer-events-none">
+        <span>Scroll to explore</span>
+        <span className="relative h-10 w-[1px] bg-white/20 overflow-hidden">
+          <span className="absolute top-0 left-0 w-full h-1/2 bg-accent-lime [animation:slide_2.4s_ease-in-out_infinite]" />
+        </span>
       </div>
 
       <style>{`
@@ -402,7 +413,7 @@ function Opening() {
 /*                                Story Panel                                  */
 /* -------------------------------------------------------------------------- */
 
-function StoryPanel({ index, total, eyebrow, title, copy, image, align = "left" }) {
+function StoryPanel({ index, total, eyebrow, title, copy, metric, image, align = "left" }) {
   const sectionRef = useRef(null);
 
   useIsoLayout(() => {
@@ -415,12 +426,13 @@ function StoryPanel({ index, total, eyebrow, title, copy, image, align = "left" 
       const eyebrowEl = root.querySelector(".panel-eyebrow");
       const idxEl = root.querySelector(".panel-idx");
       const copyEl = root.querySelector(".panel-copy");
+      const metricEl = root.querySelector(".panel-metric");
 
       gsap.set(panel, { clipPath: "inset(100% 0% 0% 0% round 28px)" });
       gsap.set(img, { scale: 1.4, yPercent: 8 });
       gsap.set(titleWords, { yPercent: 110, opacity: 0 });
       gsap.set([eyebrowEl, idxEl], { y: 30, opacity: 0 });
-      gsap.set(copyEl, { y: 30, opacity: 0 });
+      gsap.set([copyEl, metricEl].filter(Boolean), { y: 30, opacity: 0 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -455,8 +467,8 @@ function StoryPanel({ index, total, eyebrow, title, copy, image, align = "left" 
           0.25
         )
         .to(
-          copyEl,
-          { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
+          [copyEl, metricEl].filter(Boolean),
+          { y: 0, opacity: 1, stagger: 0.08, duration: 0.6, ease: "power3.out" },
           0.5
         );
 
@@ -491,7 +503,7 @@ function StoryPanel({ index, total, eyebrow, title, copy, image, align = "left" 
           >
             <img
               src={image}
-              alt={title}
+              alt={title.replace(/\n/g, " ")}
               className="panel-img w-full h-full object-cover"
               loading="lazy"
             />
@@ -522,6 +534,13 @@ function StoryPanel({ index, total, eyebrow, title, copy, image, align = "left" 
           {copy && (
             <p className="panel-copy mt-8 text-base md:text-lg text-white/60 leading-relaxed max-w-xl">
               {copy}
+            </p>
+          )}
+
+          {metric && (
+            <p className="panel-metric mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest2 text-accent-lime">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent-lime" />
+              {metric}
             </p>
           )}
         </div>
@@ -575,9 +594,10 @@ function Stats() {
   const numRefs = useRef([]);
 
   const stats = [
-    { value: 30, suffix: "+", label: "Projects shipped" },
+    { value: 20, suffix: "+", label: "Projects shipped" },
     { value: 5, suffix: "yrs+", label: "Building software" },
-    { value: 12, suffix: "+", label: "Tech stack mastery" },
+    { value: 3, suffix: "", label: "Core domains" },
+    { value: 12, suffix: "+", label: "Stack specialties" },
   ];
 
   useIsoLayout(() => {
@@ -632,50 +652,36 @@ function Stats() {
 /*                                   Hero                                      */
 /* -------------------------------------------------------------------------- */
 
+/* Flagship case studies only; full archive lives in Projects */
 const panels = [
   {
-    eyebrow: "Smart agriculture",
+    eyebrow: "Smart agriculture · IoT + AI",
     title: "Crops that\nspeak data.",
-    copy: "AgroSense360 is a multilingual rover system that monitors crop health with AI vision and IoT sensors, then advises farmers in their native language.",
+    copy: "AgroSense360 is a multilingual rover that monitors crop health with AI vision and IoT sensors, then advises farmers in their native language. Hardware, firmware, and web in one stack.",
+    metric: "End-to-end · ESP32 + React + Firebase",
     image: Agrosense2,
   },
-    {
-    eyebrow: "Privacy Blockchain",
+  {
+    eyebrow: "Privacy blockchain · ZecHub Hackathon",
     title: "Privacy-first\nZK authentication.",
-    copy: "Sign In With Zcash (SIWZ) is the auth primitive Zcash didn't have. Non-custodial, drop-in, and built on what wallets already do. Built for the ZecHub Hackathon.",
+    copy: "Sign In With Zcash is the auth primitive Zcash didn't have: non-custodial, drop-in, built on what wallets already do. Paired with ZBooks for shielded-team accounting and payroll.",
+    metric: "Hackathon build · Next.js + ZIPs",
     image: siwz1,
+    align: "right",
   },
   {
-    eyebrow: "Crypto multi-factor event-driven trading system",
-    title: "Automated trading\nmade simple.",
-    copy: "Theia trading Bot is a Telegram crypto trading bot with strategy backtesting, real-time market data, and technical and fundamental analysis.",
+    eyebrow: "Onchain trading systems",
+    title: "Signals with\nreal confluence.",
+    copy: "Theia fuses exchange flows, insider wallets, liquidations, unlocks, and multi-timeframe analysis into one confluence-scored signal, then optionally executes on your exchange account.",
+    metric: "Event-driven · Node.js + market data",
     image: SyncTradeBot1,
   },
   {
-    eyebrow: "Education at scale",
-    title: "A learning OS\nfor a generation.",
-    copy: "FirstDigit Academy LMS handles full course management, enrollment, progress tracking and live interaction. Built end-to-end with React, Laravel and MySQL.",
-    image: Lms2,
-    align: "right",
-  },
-  {
-    eyebrow: "Civic tech",
-    title: "Find every\nschool. Anywhere.",
-    copy: "School Finder is a Nigeria-wide directory helping parents discover schools across every level of education, with rich filters and verified profiles.",
-    image: schoolFinder1,
-  },
-  {
-    eyebrow: "Commerce",
-    title: "Storefronts\nthat convert.",
-    copy: "FirstSmart Mart is production e-commerce with cart, checkout, inventory and admin. Ship-ready UX on a performant Laravel API.",
-    image: firstSmartMart1,
-    align: "right",
-  },
-  {
-    eyebrow: "Onchain",
-    title: "Sweep the\nblockchain.",
-    copy: "Solana Token Sweeper auto-detects and swaps non-SOL tokens to SOL in any given wallet, with a speed-first DX.",
-    image: solSweep1,
+    eyebrow: "0G Zero Cup 2026 Hackathon",
+    title: "Predictions you\ncan't fake.",
+    copy: "0G Receipts locks AI football forecasts to sealed inference and on-chain timestamps before kickoff. Permanent, public, and auditable so wins can't be cherry-picked.",
+    metric: "TEE + 0G Storage · Next.js",
+    image: OGReceipts1,
     align: "right",
   },
 ];
@@ -760,9 +766,9 @@ const Hero = () => {
       >
         <Opening />
 
-        <div className="relative w-full px-6 md:px-12 py-10 max-w-[1400px] mx-auto flex items-center justify-between text-white/45 text-xs uppercase tracking-widest2 border-t border-white/10">
-          <span>/01 · The Work</span>
-          <span>Selected case studies</span>
+        <div className="relative w-full px-6 md:px-12 py-10 max-w-[1400px] mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-white/45 text-xs uppercase tracking-widest2 border-t border-white/10">
+          <span>/01 · Flagship work</span>
+          <span>Four case studies · full archive below</span>
         </div>
 
         {panels.map((p, i) => (
@@ -773,10 +779,38 @@ const Hero = () => {
             eyebrow={p.eyebrow}
             title={p.title}
             copy={p.copy}
+            metric={p.metric}
             image={p.image}
             align={p.align}
           />
         ))}
+
+        {/* Bridge into full archive */}
+        <div className="relative w-full px-6 md:px-12 py-16 max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-t border-white/10">
+          <div>
+            <p className="text-xs uppercase tracking-widest2 text-accent-lime font-mono mb-3">
+              Full archive
+            </p>
+            <p className="font-display text-2xl md:text-3xl font-bold text-white max-w-xl leading-tight">
+              Every project I&apos;ve shipped: web, IoT, blockchain, and hardware.
+            </p>
+          </div>
+          <a
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("projects")?.scrollIntoView({
+                behavior: "smooth",
+              });
+            }}
+            className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-full border border-white/20 text-white text-sm uppercase tracking-widest2 hover:bg-white hover:text-ink-950 transition-all duration-500 shrink-0"
+          >
+            Browse all work
+            <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">
+              →
+            </span>
+          </a>
+        </div>
 
         <Marquee />
         <Stats />

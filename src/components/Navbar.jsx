@@ -8,11 +8,12 @@ import cvHtml from "../../documents/Austin-Chris-Iwu-CV.html?raw";
 
 const navLinks = [
   { name: "Work", path: "projects" },
+  { name: "About", path: "about" },
   { name: "Contact", path: "contact" },
 ];
 
 // The document renders inline inside a scoped iframe, so its own Download/Print
-// bar is hidden — the viewer supplies floating controls instead. The <base> stops
+// bar is hidden; the viewer supplies floating controls instead. The <base> stops
 // in-document links from navigating the iframe itself.
 const forEmbed = (html) =>
   html.replace(
@@ -102,17 +103,6 @@ const Navbar = () => {
                 </motion.button>
               </li>
             ))}
-            <li>
-              <motion.button
-                onClick={() => setOpenDoc("cv")}
-                className="relative group px-4 py-2 text-sm uppercase tracking-widest2 text-white/70 hover:text-white transition-colors"
-                whileHover={{ y: -1 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                CV
-                <span className="absolute left-4 right-4 bottom-1 h-px bg-accent-lime origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-              </motion.button>
-            </li>
             <li>
               <motion.button
                 onClick={() => setOpenDoc("resume")}
@@ -216,19 +206,9 @@ const Navbar = () => {
                   View Résumé
                   <ArrowUpRight className="w-5 h-5" />
                 </motion.button>
-                <motion.button
-                  onClick={() => {
-                    setToggle(false);
-                    setOpenDoc("cv");
-                  }}
-                  className="inline-flex items-center justify-between border border-white/20 text-white px-6 py-5 rounded-2xl font-medium uppercase tracking-widest2 hover:bg-white/5 transition-colors"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.52, duration: 0.5 }}
-                >
-                  View CV
-                  <ArrowUpRight className="w-5 h-5" />
-                </motion.button>
+                <p className="text-center text-[10px] uppercase tracking-widest2 text-white/40">
+                  CV available inside the document viewer
+                </p>
               </div>
             </motion.div>
           </>
@@ -283,12 +263,12 @@ const DocsModal = ({ open, initialDoc = "resume", onClose }) => {
           onClick={onClose}
           role="dialog"
           aria-modal="true"
-          aria-label={`${doc.label} — Austin-Chris Iwu`}
+          aria-label={`${doc.label}, Austin-Chris Iwu`}
         >
           {/* Backdrop */}
           <div className="absolute inset-0 bg-ink-950/80 backdrop-blur-md" />
 
-          {/* Panel — the document renders immediately, controls float over it */}
+          {/* Panel: document renders immediately, controls float over it */}
           <motion.div
             className="relative z-10 w-full max-w-4xl h-[90vh] bg-[#eef2f6] rounded-3xl shadow-2xl overflow-hidden"
             initial={{ opacity: 0, scale: 0.96, y: 20 }}
@@ -297,7 +277,7 @@ const DocsModal = ({ open, initialDoc = "resume", onClose }) => {
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* The document itself — rendered inline, no address bar, no PDF chrome */}
+            {/* Document rendered inline, no address bar or PDF chrome */}
             <iframe
               key={active}
               srcDoc={doc.html}
