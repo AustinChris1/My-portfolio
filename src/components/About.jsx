@@ -119,7 +119,7 @@ const About = () => {
                 }}
                 className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-ink-950 text-xs uppercase tracking-widest2 font-medium hover:bg-accent-lime transition-colors duration-500"
               >
-                See all work
+                See works
                 <span className="transition-transform duration-500 group-hover:translate-x-0.5">
                   →
                 </span>

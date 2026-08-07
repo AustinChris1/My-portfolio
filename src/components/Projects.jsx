@@ -76,6 +76,13 @@ import BodyMeasure3 from "../assets/BodyMeasure3.png";
 import BodyMeasure4 from "../assets/BodyMeasure4.png";
 import BodyMeasure5 from "../assets/BodyMeasure5.png";
 import BodyMeasure6 from "../assets/BodyMeasure6.png";
+import DegenBot from "../assets/DegenBot.jpg";
+import DegenBot1 from "../assets/DegenBot1.jpg";
+import DegenBot2 from "../assets/DegenBot2.jpg";
+import DegenBot3 from "../assets/DegenBot3.jpg";
+import DegenBot4 from "../assets/DegenBot4.jpg";
+import DegenBot5 from "../assets/DegenBot5.jpg";
+import DegenBot6 from "../assets/DegenBot6.jpg";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -111,7 +118,7 @@ const projectsData = [
       "Non-custodial Zcash auth primitive for dApps, plus ZBooks for shielded-team accounting and payroll. Built for the ZecHub Hackathon on what wallets already do: drop-in, privacy-first.",
     tech: ["Next.js", "TailwindCSS", "TypeScript", "Zcash Improvement Proposals (ZIPs)", "ZingoLib"],
     link: "https://siwz.vercel.app/",
-    github: "#",
+    github: "https://github.com/AustinChris1/ZBooks-SIWZ",
     category: "Blockchain",
   },
   {
@@ -124,7 +131,17 @@ const projectsData = [
     github: "#",
     category: "Blockchain",
   },
-  {
+    {
+    images: [DegenBot, DegenBot1, DegenBot2, DegenBot3, DegenBot4, DegenBot5, DegenBot6],
+    title: "Degenerate Bot",
+    description:
+      "A Telegram limit-order bot for Solana tokens where every target is set in market cap, not price. Paste a contract, pick market or limit, set entry and take-profit / stop-loss market caps — orders fill automatically server-side, even while you're offline. Trades in SOL, USDC or USDT, scans imported wallets for existing bags, and re-quotes every order at fill time so it never dumps into a book that isn't there. Keys are AES-256-GCM encrypted with per-wallet salts; 95 tests cover the parts where being wrong costs money.",
+    tech: ["Node.js", "Solana", "Jupiter API", "SQLite", "Telegram Bot", "grammY"],
+    link: "https://t.me/DegenerateDDBot",
+    github: "#",
+    category: "Blockchain",
+  },
+{
     images: [DoorAccessControl],
     title: "Door Access Control Simulator",
     description:
@@ -141,7 +158,7 @@ const projectsData = [
       "Makes AI prediction track records impossible to fake. Agents forecast real football matches; every pick is sealed-inference signed in a TEE, stored on 0G with an on-chain timestamp before kickoff. Built for 0G Zero Cup 2026.",
     tech: ["Next.js", "TailwindCSS", "Zero Gravity Blockchain", "0G Storage"],
     link: "https://0greceipts.vercel.app/",
-    github: "#",
+    github: "https://github.com/AustinChris1/0G-Zero-Cup-Vibeathon",
     category: "Blockchain",
   },
   {
@@ -385,7 +402,7 @@ const Projects = () => {
           <div>
             <div className="overflow-hidden mb-2">
               <span className="inline-block text-xs uppercase tracking-widest2 text-accent-lime font-mono">
-                /03 · Full archive
+                /03 · Archive
               </span>
             </div>
             <h2
@@ -393,7 +410,7 @@ const Projects = () => {
               className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9]"
             >
               <span className="mask-line block">
-                {"All projects".split(" ").map((w, i) => (
+                {"Projects".split(" ").map((w, i) => (
                   <span
                     key={i}
                     className="pj-word inline-block"
