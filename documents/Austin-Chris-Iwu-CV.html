@@ -4,144 +4,145 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Austin-Chris Iwu - CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet" />
 <style>
   *{box-sizing:border-box}
   :root{
-    --ink:#1f2933;
-    --text:#2f3742;
-    --muted:#626e7c;
-    --rule:#b8c2cc;
-    --blue:#1f4e79;
-    --paper:#ffffff;
-    --screen:#eef2f6;
+    --ink:#14181f;
+    --text:#2b323c;
+    --muted:#5c6572;
+    --rule:#c5ccd6;
+    --paper:#fff;
+    --screen:#ebe6de;
   }
   html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   body{
     margin:0;
     background:var(--screen);
     color:var(--text);
-    font-family:Calibri,"Segoe UI",Arial,sans-serif;
-    font-size:10.35pt;
+    font-family:"Source Sans 3","Segoe UI","Helvetica Neue",Arial,sans-serif;
+    font-size:10pt;
     line-height:1.34;
   }
   .actions{
     position:fixed;
-    top:18px;
-    right:18px;
+    top:16px;
+    right:16px;
     z-index:20;
     display:flex;
-    gap:10px;
+    gap:8px;
   }
   .actions a,.actions button{
-    border:0;
-    border-radius:999px;
-    padding:10px 15px;
-    background:var(--blue);
+    border:1px solid var(--ink);
+    border-radius:3px;
+    padding:8px 12px;
+    background:var(--ink);
     color:#fff;
-    font:700 11px/1 Calibri,"Segoe UI",Arial,sans-serif;
-    letter-spacing:.08em;
-    text-transform:uppercase;
+    font:600 11px/1 "Source Sans 3","Segoe UI",Arial,sans-serif;
+    letter-spacing:.04em;
     text-decoration:none;
-    box-shadow:0 12px 28px rgba(31,78,121,.24);
     cursor:pointer;
   }
-  .actions button{background:#263445}
+  .actions button{background:transparent;color:var(--ink)}
   .page{
     width:210mm;
     min-height:297mm;
     margin:22px auto;
-    padding:17mm 18mm;
+    padding:14.5mm 16mm 14mm;
     background:var(--paper);
-    box-shadow:0 16px 50px rgba(18,32,48,.14);
+    box-shadow:0 18px 50px rgba(20,24,31,.12);
   }
-  header{
-    padding-bottom:9px;
-    border-bottom:2px solid var(--blue);
+  header{padding-bottom:9px;margin-bottom:12px;position:relative}
+  header::after{
+    content:"";
+    display:block;
+    height:4px;
+    margin-top:9px;
+    border-top:1.7px solid var(--ink);
+    border-bottom:.45px solid var(--ink);
   }
   h1{
     margin:0;
-    color:var(--blue);
-    font-size:24pt;
+    color:var(--ink);
+    font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+    font-size:23.5pt;
+    font-weight:700;
     line-height:1;
-    letter-spacing:.01em;
+    letter-spacing:-.01em;
   }
   .headline{
     margin-top:5px;
     color:var(--ink);
-    font-size:11.5pt;
-    font-weight:700;
+    font-size:10.6pt;
+    font-weight:600;
   }
   .contact{
-    margin-top:7px;
+    margin-top:5px;
     color:var(--muted);
-    font-size:9.5pt;
+    font-size:9.15pt;
   }
+  a{color:inherit;text-decoration:underline;text-decoration-thickness:.6px;text-underline-offset:2px}
   .contact a{color:var(--muted);text-decoration:none}
-  section{margin-top:12px}
+  .contact a:hover{color:var(--ink);text-decoration:underline}
+  section{margin-top:11px}
   h2{
     margin:0 0 6px;
     padding-bottom:2px;
-    color:var(--blue);
-    border-bottom:1px solid var(--rule);
-    font-size:11pt;
-    line-height:1.1;
-    letter-spacing:.09em;
+    color:var(--ink);
+    border-bottom:.6px solid var(--ink);
+    font-size:8.6pt;
+    font-weight:700;
+    line-height:1.15;
+    letter-spacing:.14em;
     text-transform:uppercase;
   }
   p{margin:0 0 5px}
-  .item{margin-bottom:9px}
+  .item{margin-bottom:8px}
+  .item:last-child{margin-bottom:0}
   .row{
     display:flex;
     justify-content:space-between;
-    gap:18px;
+    gap:16px;
     align-items:baseline;
   }
   .title{font-weight:700;color:var(--ink)}
-  .org{font-weight:700;color:var(--blue)}
+  .org{font-weight:600;color:var(--ink)}
   .meta{
     flex:none;
     color:var(--muted);
-    font-size:9.35pt;
+    font-size:9pt;
     text-align:right;
     white-space:nowrap;
   }
   .sub{
     margin-top:1px;
     color:var(--muted);
-    font-style:italic;
-    font-size:9.5pt;
+    font-size:9.15pt;
   }
   ul{
-    margin:4px 0 0 16px;
+    margin:3px 0 0 15px;
     padding:0;
   }
-  li{margin:2px 0}
-  .skills{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:5px 22px;
-  }
+  li{margin:1.5px 0}
+  a{color:inherit}
+  .skills{display:grid;gap:2px}
   .skill-row{
     display:grid;
-    grid-template-columns:96px 1fr;
+    grid-template-columns:92px 1fr;
     gap:10px;
   }
-  .skill-key{
-    color:var(--ink);
-    font-weight:700;
-  }
+  .skill-key{color:var(--ink);font-weight:700}
   .stack{color:var(--muted);font-style:italic}
-  .compact-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px 22px;
-  }
+  .proj p{margin-top:1px}
   @page{size:A4;margin:0}
   @media print{
     body{background:#fff}
     .actions{display:none}
-    .page{margin:0;box-shadow:none;width:auto;min-height:auto;padding:14mm 16mm}
-    section,.item{break-inside:avoid}
+    .page{margin:0;box-shadow:none;width:auto;min-height:auto;padding:13.5mm 15.5mm}
+    a{color:inherit}
+    .item{break-inside:avoid}
   }
   @media screen and (max-width:760px){
     body{background:#fff}
@@ -150,7 +151,6 @@
     .actions button{display:none}
     .row{display:block}
     .meta{text-align:left;margin-top:1px}
-    .skills,.compact-grid{grid-template-columns:1fr}
     .skill-row{grid-template-columns:1fr}
   }
 </style>
@@ -164,71 +164,26 @@
 <main class="page">
   <header>
     <h1>Austin-Chris Iwu</h1>
-    <div class="headline">Full-Stack Developer | Embedded Systems Engineer | Electrical/Electronics Engineer</div>
+    <div class="headline">Electrical and Electronics Engineer  ·  Full-Stack Developer</div>
     <div class="contact">
-      Owerri, Nigeria | Nigerian | Available worldwide (remote) |
-      <a href="mailto:austinchrisiwu@gmail.com">austinchrisiwu@gmail.com</a> |
-      <a href="https://austinchris.me">austinchris.me</a> |
-      <a href="https://github.com/AustinChris1">github.com/AustinChris1</a> |
-      <a href="https://linkedin.com/in/austinchris1">linkedin.com/in/austinchris1</a> |
-      <a href="https://t.me/thatcreator">t.me/thatcreator</a> |
-      <a href="https://x.com/AustinChris_">@AustinChris_</a>
+      Owerri, Nigeria  ·  Nigerian<br />
+      <a href="mailto:austinchrisiwu@gmail.com">austinchrisiwu@gmail.com</a>
+      · <a href="https://austinchris.me">austinchris.me</a>
+      · <a href="https://github.com/AustinChris1">github.com/AustinChris1</a>
+      · <a href="https://linkedin.com/in/austinchris1">linkedin.com/in/austinchris1</a>
     </div>
   </header>
 
   <section>
     <h2>Profile</h2>
     <p>
-      Full-stack developer and Electrical/Electronics Engineering graduate with experience designing and building scalable
-      web platforms, embedded systems, IoT products, computer-vision tools and blockchain applications. Skilled in React,
-      Laravel, Node.js, MySQL, Firebase, ESP32, Arduino, Python and modern deployment workflows. Strong record of shipping
-      practical products across education, commerce, agriculture, security, fintech and Web3, including 30+ completed
-      projects and hackathon builds on Zcash and 0G. Active open-source contributor to the Zcash ecosystem through ZecHub,
-      working in the open alongside community maintainers.
+      B.Eng. Electrical and Electronics Engineering, Second Class Upper (CGPA 4.09 / 5.00),
+      Electronics and Computing, Federal University of Technology, Owerri. I build across
+      firmware, backend systems, and product interfaces: a multilingual AI and IoT crop-health
+      rover for my final-year project, production platforms at First Digit Communications,
+      and public work on Zcash, Flare, Solana, and 0G. Nigerian, based in Owerri. Open to
+      funded graduate study abroad and to software or embedded roles.
     </p>
-  </section>
-
-  <section>
-    <h2>Experience</h2>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">Software Developer</span> | <span class="org">First Digit Communications Ltd.</span></div>
-        <div class="meta">Sep 2024 - Present</div>
-      </div>
-      <div class="sub">Abuja, Nigeria | Full-stack, embedded and product delivery</div>
-      <ul>
-        <li>Built and shipped FirstDigit Academy, a full learning-management system with course management, student enrollment, progress tracking and interactive learning.</li>
-        <li>Developed FirstSmart Mart, a production e-commerce platform with cart, checkout, inventory, admin dashboard, Paystack payments and bank-transfer flows.</li>
-        <li>Engineered a face-recognition security and Telegram-alerting system using Node.js, face-api.js and ESP32-CAM for real-time suspect detection.</li>
-        <li>Built School Finder, a Nigeria-wide school directory with rich filters and verified profiles, plus SOHADAN and First Digit corporate websites.</li>
-        <li>Collaborated across requirements gathering, UI implementation, backend API design, database work, deployment and iterative product support.</li>
-      </ul>
-    </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">Independent Developer</span> | <span class="org">Full-Stack, IoT and Blockchain</span></div>
-        <div class="meta">2021 - Present</div>
-      </div>
-      <div class="sub">Self-directed product engineering, research builds and hackathons</div>
-      <ul>
-        <li>Designed and delivered AgroSense360, an AI + IoT multilingual rover for smart crop-health monitoring and farmer advisory.</li>
-        <li>Competed in Zcash and 0G hackathons, shipping Sign In With Zcash, ZBooks and OG Receipts under competitive deadlines.</li>
-        <li>Built tooling across Solana, Internet Computer/Motoko, event-driven trading systems and responsive React/Tailwind interfaces.</li>
-        <li>Maintained a broad engineering practice spanning backend services, front-end interfaces, embedded hardware, vision models and cloud deployment.</li>
-      </ul>
-    </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">Open Source Contributor</span> | <span class="org">ZecHub (Zcash Ecosystem)</span></div>
-        <div class="meta">Ongoing</div>
-      </div>
-      <div class="sub">Community-maintained Zcash education and ecosystem tooling</div>
-      <ul>
-        <li>Contribute to ZecHub, the community-driven education and documentation hub for the Zcash ecosystem.</li>
-        <li>Build open-source tooling for Zcash, including Sign In With Zcash (SIWZ), a non-custodial wallet-authentication primitive, and ZBooks for shielded-ZEC teams.</li>
-        <li>Work in the open alongside community maintainers, contributing through public repositories and ecosystem discussion.</li>
-      </ul>
-    </div>
   </section>
 
   <section>
@@ -237,16 +192,21 @@
       <div class="row">
         <div>
           <span class="title">B.Eng. Electrical and Electronics Engineering</span><br />
-          Federal University of Technology, Owerri (FUTO), Imo State, Nigeria | Electronics and Computing major
+          Federal University of Technology, Owerri (FUTO), Imo State, Nigeria
         </div>
         <div class="meta">Aug 2021 - Oct 2025</div>
       </div>
-      <p><span class="title">Final-Year Project:</span> AgroSense360 - AI and IoT-based multilingual rover for smart crop-health monitoring and advisory.</p>
+      <div class="sub">Electronics and Computing  ·  Second Class Honours (Upper Division)  ·  CGPA 4.09 / 5.00</div>
+      <p style="margin-top:4px">
+        <span class="title">Final-year project:</span> AgroSense360, an AI and IoT multilingual rover
+        for crop-health monitoring and farmer advisory. Designed the sensing stack (ESP32/Arduino),
+        a vision pipeline, and a React/Firebase dashboard that returns recommendations in local languages.
+      </p>
     </div>
     <div class="item">
       <div class="row">
         <div>
-          <span class="title">West African Senior School Certificate Examination (WASSCE)</span><br />
+          <span class="title">West African Senior School Certificate (WASSCE)</span><br />
           Federal Government College, Okigwe, Imo State, Nigeria
         </div>
         <div class="meta">2014 - 2020</div>
@@ -255,149 +215,156 @@
   </section>
 
   <section>
-    <h2>Technical Skills</h2>
-    <div class="skills">
-      <div class="skill-row"><div class="skill-key">Languages</div><div>JavaScript, TypeScript, PHP, Python, C/C++, SQL, Motoko, HTML, CSS</div></div>
-      <div class="skill-row"><div class="skill-key">Frontend</div><div>React, Next.js, TailwindCSS, GSAP, Three.js, Framer Motion, Bootstrap</div></div>
-      <div class="skill-row"><div class="skill-key">Backend</div><div>Laravel, Node.js, REST APIs, authentication, admin dashboards, payment flows</div></div>
-      <div class="skill-row"><div class="skill-key">Databases</div><div>MySQL, Firebase/Firestore, schema design, data modelling</div></div>
-      <div class="skill-row"><div class="skill-key">Embedded</div><div>ESP32, ESP32-CAM, Arduino, Raspberry Pi, IoT sensors, Proteus</div></div>
-      <div class="skill-row"><div class="skill-key">AI/Vision</div><div>MediaPipe, face-api.js, computer vision workflows, AI product prototyping</div></div>
-      <div class="skill-row"><div class="skill-key">Blockchain</div><div>Solana, Internet Computer, Motoko, Zcash, 0G Compute, 0G Storage, TEE concepts</div></div>
-      <div class="skill-row"><div class="skill-key">Tools</div><div>Git, Linux, Vite, Vercel, cloud deployment, Telegram Bots, Paystack</div></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Key Projects</h2>
+    <h2>Experience</h2>
     <div class="item">
       <div class="row">
-        <div><span class="title">AgroSense360 - AI and IoT Multilingual Rover</span></div>
-        <div class="meta">Final-Year Project</div>
+        <div><span class="title">Software Developer</span>  ·  <span class="org">First Digit Communications Ltd.</span></div>
+        <div class="meta">Sep 2024 - Present</div>
       </div>
-      <div class="sub">React | Firebase | ESP32 | Arduino | Python</div>
+      <div class="sub">Abuja, Nigeria (remote from Owerri)  ·  Full-stack product and embedded delivery</div>
       <ul>
-        <li>Built a smart crop-health monitoring rover that combines AI vision and IoT sensors for farm condition awareness.</li>
-        <li>Designed a multilingual advisory layer so farmers can receive practical recommendations in familiar language.</li>
-        <li>Integrated hardware sensing, software dashboarding and AI-driven analysis into one end-to-end prototype.</li>
+        <li>Shipped FirstDigit Academy (<a href="https://acad.firstdigit.com.ng">acad.firstdigit.com.ng</a>): course administration, student enrollment, and progress tracking on React, Laravel, and MySQL.</li>
+        <li>Built FirstSmart Mart (<a href="https://spx.firstdigit.com.ng">spx.firstdigit.com.ng</a>): catalog, cart, checkout, inventory, admin dashboard, and Paystack plus bank-transfer payments.</li>
+        <li>Launched School Finder (<a href="https://schoolfinderabuja.com">schoolfinderabuja.com</a>), a Nigeria-wide directory from nursery to tertiary so parents can filter and compare verified school profiles.</li>
+        <li>Delivered the First Digit corporate site and the SOHADAN association site (<a href="https://sohadan.ng">sohadan.ng</a>), the latter with GSAP motion on a React/Laravel stack.</li>
+        <li>Engineered a face-recognition security pipeline using Node.js, face-api.js, and ESP32-CAM, with Telegram alerts on detection.</li>
       </ul>
     </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">FirstDigit Academy</span></div>
-        <div class="meta">acad.firstdigit.com.ng</div>
-      </div>
-      <p>Full learning-management system with course administration, enrollment, progress tracking and interactive learning. <span class="stack">React, Laravel, MySQL</span></p>
-    </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">FirstSmart Mart</span></div>
-        <div class="meta">Production e-commerce</div>
-      </div>
-      <p>E-commerce platform with cart, checkout, inventory, admin dashboard, Paystack integration and bank-transfer workflows. <span class="stack">React, Laravel, MySQL, Paystack</span></p>
-    </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">School Finder</span></div>
-        <div class="meta">schoolfinderabuja.com</div>
-      </div>
-      <p>Nigeria-wide school directory with verified profiles, search and filtering for parents, students and institutions. <span class="stack">React, Laravel, MySQL</span></p>
-    </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">Sign In With Zcash (SIWZ) + ZBooks</span></div>
-        <div class="meta">siwz.vercel.app</div>
-      </div>
-      <p>Non-custodial wallet authentication primitive for Zcash, plus accounting and payroll tools for shielded-ZEC teams. Built for the ZecHub Hackathon. <span class="stack">Next.js, TypeScript, ZIPs, ZingoLib</span></p>
-    </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">OG Receipts - Verifiable AI Track Records</span></div>
-        <div class="meta">0greceipts.vercel.app</div>
-      </div>
-      <p>Tamper-proof AI prediction records using TEE sealed inference on 0G Compute and timestamped persistence on 0G Storage. Built for 0G Zero Cup 2026. <span class="stack">Next.js, 0G Compute, 0G Storage</span></p>
-    </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">Atelier Fit - Virtual Body Measurement</span></div>
-        <div class="meta">body-measurement-green.vercel.app</div>
-      </div>
-      <p>Computer-vision tailoring tool that estimates measurements from two phone photos and height, suggests a ready-to-wear size and exports a measurement card. <span class="stack">React, TailwindCSS, MediaPipe</span></p>
-    </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">Attendance System - RFID + ESP32-CAM</span></div>
-        <div class="meta">github.com/AustinChris1/AttendanceSystem</div>
-      </div>
-      <p>Attendance tracking system with real-time analytics, automated reporting and camera-assisted verification. <span class="stack">React, Firebase, ESP32-CAM</span></p>
-    </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">Theia Trading Bot</span></div>
-        <div class="meta">theiatrading.vercel.app</div>
-      </div>
-      <p>Event-driven trading system combining on-chain flows, liquidations, unlocks and macro events into one confluence-scored signal engine. <span class="stack">Node.js, blockchain data</span></p>
-    </div>
   </section>
 
   <section>
-    <h2>Research and Technical Studies</h2>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">AI and IoT-Based Crop Health Monitoring</span></div>
-        <div class="meta">Completed</div>
-      </div>
-      <p>Designed an applied research prototype combining embedded sensing, AI vision and multilingual advisory for smallholder agriculture.</p>
-    </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">Computer-Vision Measurement from Consumer Photos</span></div>
-        <div class="meta">Completed</div>
-      </div>
-      <p>Explored pose/landmark detection and proportional estimation for tailoring measurements using lightweight browser-accessible tooling.</p>
-    </div>
-    <div class="item">
-      <div class="row">
-        <div><span class="title">Verifiable AI and Privacy-Preserving Blockchain Workflows</span></div>
-        <div class="meta">Hackathon research</div>
-      </div>
-      <p>Built prototypes around wallet authentication, shielded-value accounting and tamper-evident AI outputs on emerging blockchain infrastructure.</p>
-    </div>
-  </section>
-
-  <section>
-    <h2>Extra Curriculars and Achievements</h2>
-    <div class="compact-grid">
-      <div>
-        <p><span class="title">Open Source Contributor</span><br />Contributes to ZecHub, the community-driven education and tooling hub for the Zcash ecosystem.</p>
-      </div>
-      <div>
-        <p><span class="title">Hackathon Builder</span><br />Built and submitted Zcash and 0G ecosystem projects under competitive timelines.</p>
-      </div>
-      <div>
-        <p><span class="title">Product Portfolio</span><br />Shipped 30+ projects across web, IoT, embedded systems, blockchain, fintech and security.</p>
-      </div>
-      <div>
-        <p><span class="title">Hardware + Software Integration</span><br />Built systems that combine ESP32/Arduino hardware with dashboards, alerts and cloud data flows.</p>
-      </div>
-      <div>
-        <p><span class="title">Technical Mentorship</span><br />Supports peers and juniors with full-stack, embedded and product-build guidance.</p>
-      </div>
+    <h2>Technical skills</h2>
+    <div class="skills">
+      <div class="skill-row"><div class="skill-key">Programming</div><div>JavaScript, TypeScript, PHP, Python, C/C++, SQL, Motoko, Solidity, HTML, CSS</div></div>
+      <div class="skill-row"><div class="skill-key">Frontend</div><div>React, Next.js, Tailwind CSS, GSAP, Three.js, Framer Motion</div></div>
+      <div class="skill-row"><div class="skill-key">Backend</div><div>Laravel, Node.js, REST APIs, authentication, payments, admin dashboards</div></div>
+      <div class="skill-row"><div class="skill-key">Data</div><div>MySQL, Firebase/Firestore, SQLite, schema design</div></div>
+      <div class="skill-row"><div class="skill-key">Embedded</div><div>ESP32, ESP32-CAM, Arduino, Raspberry Pi, IoT sensors, Proteus</div></div>
+      <div class="skill-row"><div class="skill-key">Vision / AI</div><div>MediaPipe, face-api.js, browser vision pipelines, TEE sealed inference</div></div>
+      <div class="skill-row"><div class="skill-key">Onchain</div><div>Solana, Zcash, Internet Computer, Flare, 0G Compute/Storage, XRPL, Solidity</div></div>
+      <div class="skill-row"><div class="skill-key">Tools</div><div>Git, Linux, Vite, Vercel, Telegram Bots, Paystack, Jupiter API</div></div>
     </div>
   </section>
 
   <section>
     <h2>Languages</h2>
-    <div class="compact-grid">
-      <p><span class="title">English</span><br />Fluent professional working proficiency</p>
-      <p><span class="title">Igbo</span><br />Native fluency</p>
+    <p><span class="title">English</span>  ·  Fluent (language of instruction) &nbsp;&nbsp; <span class="title">Igbo</span>  ·  Native</p>
+  </section>
+
+  <section>
+    <h2>Selected projects</h2>
+    <div class="item proj">
+      <div class="row">
+        <div><span class="title">Atelier Fit</span></div>
+        <div class="meta">body-measurement-green.vercel.app</div>
+      </div>
+      <p>Computer-vision tailoring tool. Two phone photos plus height produce a full sewing measurement set (male/female), a ready-to-wear size suggestion, saved profiles, and an exportable measurement card. <span class="stack">React, Tailwind CSS, MediaPipe</span></p>
+    </div>
+    <div class="item proj">
+      <div class="row">
+        <div><span class="title">Degenerate Bot</span></div>
+        <div class="meta">t.me/DegenerateDDBot</div>
+      </div>
+      <p>Telegram limit-order bot for Solana tokens that takes entry, take-profit, and stop-loss in market cap rather than price. Orders fill server-side while the user is offline. Keys are AES-256-GCM encrypted with per-wallet salts; 95 tests cover the money path. <span class="stack">Node.js, Solana, Jupiter API, SQLite, grammY</span></p>
+    </div>
+    <div class="item proj">
+      <div class="row">
+        <div><span class="title">Theia</span></div>
+        <div class="meta">theiatrading.vercel.app</div>
+      </div>
+      <p>Event-driven trading system that folds exchange and insider-wallet flows, liquidations, unlocks, macro events, and multi-timeframe analysis into one confluence score, then can execute on an exchange account. <span class="stack">Node.js, market data</span></p>
     </div>
   </section>
 
   <section>
-    <h2>References</h2>
-    <p>Available on request.</p>
+    <h2>Hackathons and open-source work</h2>
+    <div class="item proj">
+      <div class="row">
+        <div><span class="title">ZBooks and Sign In With Zcash (SIWZ)</span>  ·  ZecHub</div>
+        <div class="meta">zecbooks.vercel.app</div>
+      </div>
+      <p>
+        Non-custodial accounting for Zcash teams: treasury reads through a Unified Full Viewing Key,
+        P&amp;L and CSV export, and M of N payouts HMAC-bound to the payable set, signed from the
+        treasurer's own wallet via a ZIP 321 QR. SIWZ, in the same repo, is the Zcash-native sign-in primitive.
+        <span class="stack">Next.js, TypeScript, Zcash  ·  github.com/AustinChris1/ZBooks-SIWZ</span>
+      </p>
+    </div>
+    <div class="item proj">
+      <div class="row">
+        <div><span class="title">Heirloom</span>  ·  Flare Summer Signal</div>
+        <div class="meta">heirloom.wtf</div>
+      </div>
+      <p>
+        Trustless dead-man's switch for XRP. A private will is sealed in a Flare Confidential Compute
+        enclave; after a proof-of-life gap and an M of N guardian threshold the enclave prices against
+        the FTSO feed and signs XRPL payouts. The XRP never leaves the ledger.
+        <span class="stack">Flare, confidential compute, XRPL  ·  github.com/AustinChris1/Heirloom</span>
+      </p>
+    </div>
+    <div class="item proj">
+      <div class="row">
+        <div><span class="title">Prion</span>  ·  Hack Hydra</div>
+        <div class="meta">useprion.vercel.app</div>
+      </div>
+      <p>
+        Walks the citation graph on HydraDB after a retraction, scores how load-bearing each edge is,
+        and decays contamination across hops. Splits citations into pre-retraction, post-retraction,
+        and latent (cited before the notice and never corrected). Missing full text is excluded, never guessed.
+        <span class="stack">HydraDB, Next.js, OpenAlex  ·  github.com/AustinChris1/prion</span>
+      </p>
+    </div>
+    <div class="item proj">
+      <div class="row">
+        <div><span class="title">Aval</span>  ·  Botchain #2</div>
+        <div class="meta">aval-botchain.vercel.app</div>
+      </div>
+      <p>
+        A letter of credit for AI agents. Funds lock to a job, a rulebook, and an examiner; the agent
+        never holds the money. The fee is drawable only after the named examiner scores the evidence
+        hash on the ERC-8004 Validation Registry. The credit is an ERC-721, so the claim is assignable.
+        <span class="stack">Solidity, BOT Chain, ERC-8004, Next.js  ·  github.com/AustinChris1/Aval</span>
+      </p>
+    </div>
+    <div class="item proj">
+      <div class="row">
+        <div><span class="title">Clawback</span>  ·  PixelForge</div>
+        <div class="meta">clawbackhq.vercel.app</div>
+      </div>
+      <p>
+        An agent that reads retail emails, works out what companies still owe, and drafts the claim
+        for the user to send. Classifies mail under a strict JSON schema, links a later sale back to
+        an earlier receipt, and checks retailer policy windows (price drop, late delivery, return, warranty).
+        <span class="stack">TypeScript, Next.js  ·  github.com/AustinChris1/Clawback</span>
+      </p>
+    </div>
+    <div class="item proj">
+      <div class="row">
+        <div><span class="title">0G Receipts</span>  ·  0G Zero Cup</div>
+        <div class="meta">0greceipts.vercel.app</div>
+      </div>
+      <p>
+        An AI football-forecast track record that cannot be edited after the fact. Each pick is
+        generated by sealed inference on 0G Compute (TEE-signed, attestation verified on every call)
+        and written to 0G Storage with an on-chain transaction before kickoff. A bundled verifier
+        lets anyone re-check the receipt later.
+        <span class="stack">Next.js, 0G Compute, 0G Storage, TEE  ·  github.com/AustinChris1/0G-Zero-Cup-Vibeathon</span>
+      </p>
+    </div>
+    <div class="item proj">
+      <div class="row">
+        <div><span class="title">Theia ASP</span>  ·  OKX AI</div>
+        <div class="meta">Agent #6004 on X Layer</div>
+      </div>
+      <p>
+        Crypto intelligence for trading agents on OKX.AI: wash volume, float concentration,
+        exchange-custody flows, and liquidations. Priced per call in USDT via x402 on X Layer
+        and exposed as MCP tools. An LLM may narrate the output; it never decides a trade.
+        <span class="stack">Node.js, OKX.AI, x402, MCP  ·  github.com/AustinChris1/Theia-ASP-Agent</span>
+      </p>
+    </div>
   </section>
+
 </main>
 </body>
 </html>

@@ -25,15 +25,25 @@ $jobs = @(
 )
 
 foreach ($j in $jobs) {
-  $inUri  = "file:///" + (Join-Path $docs $j.in).Replace("\", "/")
+  $inHtml = Join-Path $docs $j.in
   $outPdf = Join-Path $docs $j.out
-  & $browser --headless=new --disable-gpu --no-pdf-header-footer `
-    --run-all-compositor-stages-before-draw --virtual-time-budget=3000 `
-    "--print-to-pdf=$outPdf" $inUri 2>$null
+  $tmpPdf = Join-Path $env:TEMP ("aciwu-" + [Guid]::NewGuid().ToString("n") + ".pdf")
+  $inUri  = ([Uri]$inHtml).AbsoluteUri
+  $p = Start-Process -FilePath $browser -ArgumentList @(
+    "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
+    "--run-all-compositor-stages-before-draw", "--virtual-time-budget=8000",
+    "--print-to-pdf=$tmpPdf", $inUri
+  ) -Wait -PassThru
+  if ($p.ExitCode -ne 0 -or -not (Test-Path $tmpPdf) -or (Get-Item $tmpPdf).Length -lt 50000) {
+    throw "Failed to render $($j.out) (exit $($p.ExitCode))"
+  }
+  Move-Item $tmpPdf $outPdf -Force
   Write-Host "Rendered $($j.out)"
 }
 
 # Sync into the app so the nav's Résumé viewer/download uses the new file
 Copy-Item (Join-Path $docs "Austin-Chris-Iwu-Resume.pdf") $assets -Force
 Copy-Item (Join-Path $docs "Austin-Chris-Iwu-CV.pdf")     $assets -Force
-Write-Host "Synced PDFs into src/assets. Run 'pnpm build' to publish."
+Copy-Item (Join-Path $docs "Austin-Chris-Iwu-Resume.pdf") $root   -Force
+Copy-Item (Join-Path $docs "Austin-Chris-Iwu-CV.pdf")     $root   -Force
+Write-Host "Synced PDFs into src/assets and repo root. Run 'pnpm build' to publish."
