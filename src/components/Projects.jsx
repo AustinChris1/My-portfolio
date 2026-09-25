@@ -11,6 +11,7 @@ import {
   X,
   Maximize2,
   Youtube,
+  Trophy,
 } from "lucide-react";
 import ReactPaginate from "react-paginate";
 import gsap from "gsap";
@@ -91,6 +92,10 @@ import Hack_Heirloom from "../assets/Hack_Heirloom.jpg";
 import Hack_Prion from "../assets/Hack_Prion.jpg";
 import Hack_Aval from "../assets/Hack_Aval.jpg";
 import Hack_Clawback from "../assets/Hack_Clawback.jpg";
+import earmark1 from "../assets/earmark1.png";
+import earmark2 from "../assets/earmark2.png";
+import earmark3 from "../assets/earmark3.png";
+import earmark4 from "../assets/earmark4.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -308,6 +313,19 @@ const projectsData = [
 ];
 
 const hackathonsData = [
+  {
+    images: [earmark1, earmark2, earmark3, earmark4],
+    title: "Earmark",
+    event: "Celo Agents at Work",
+    award: "Best Stablecoin Adoption",
+    description:
+      "A group chat collects money for one bill, and the money can only go to the wallet the group locked in. Earmark is a Telegram agent on Celo: someone names the bill, the amount and the payee's wallet, which is locked at creation and can never be changed. Everyone pays their share from their own wallet, and each payment goes straight from the payer to the locked destination in a single transaction, so the contract never holds a balance and there is no treasurer to trust. The bot tracks who has paid and nudges the rest. Supports 25 Celo stablecoins, x402 payments from other agents, fee abstraction and ERC-8004 agent identity. Live on Celo mainnet.",
+    tech: ["Solidity", "Celo", "Telegram Bot", "x402", "ERC-8004", "React"],
+    demo: "https://youtu.be/Pfaub-RLAIY",
+    link: "https://earmark-agent.onrender.com/",
+    github: "https://github.com/AustinChris1/Earmark",
+    category: "Blockchain",
+  },
   {
     images: [Hack_Heirloom],
     title: "Heirloom",
@@ -743,6 +761,12 @@ const ProjectCard = ({ project, index, autoPlay, onOpen }) => {
 
       {/* Body */}
       <div className="p-6 flex flex-col gap-4">
+        {project.award && (
+          <span className="self-start inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-lime text-ink-950 text-[10px] font-semibold uppercase tracking-widest2">
+            <Trophy size={12} />
+            Winner · {project.award}
+          </span>
+        )}
         <div className="flex items-start justify-between gap-3">
           <h3 className="font-display text-2xl font-bold text-white group-hover:text-accent-lime transition-colors duration-500">
             {project.title}
@@ -958,6 +982,13 @@ const ProjectModal = ({ project, onClose }) => {
                 <span className="w-1 h-1 rounded-full bg-accent-lime" />
                 {project.event ? `Hackathon · ${project.event}` : project.category}
               </div>
+
+              {project.award && (
+                <span className="self-start inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-lime text-ink-950 text-xs font-semibold uppercase tracking-widest2">
+                  <Trophy size={14} />
+                  Winner · {project.award}
+                </span>
+              )}
 
               <h3 className="font-display text-3xl md:text-4xl font-bold text-white leading-tight">
                 {project.title}
