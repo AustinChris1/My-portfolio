@@ -96,6 +96,10 @@ import earmark1 from "../assets/earmark1.png";
 import earmark2 from "../assets/earmark2.png";
 import earmark3 from "../assets/earmark3.png";
 import earmark4 from "../assets/earmark4.png";
+import equilux1 from "../assets/equilux1.png";
+import equilux2 from "../assets/equilux2.png";
+import equilux3 from "../assets/equilux3.png";
+import equilux4 from "../assets/equilux4.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -324,6 +328,20 @@ const hackathonsData = [
     demo: "https://youtu.be/Pfaub-RLAIY",
     link: "https://earmark-agent.onrender.com/",
     github: "https://github.com/AustinChris1/Earmark",
+    category: "Blockchain",
+  },
+  {
+    images: [equilux1, equilux2, equilux3, equilux4],
+    title: "Equilux",
+    event: "Midnight Buildathon",
+    award: "Wave 1",
+    description:
+      "Pay-transparency reporting that employees can verify, built on Midnight. The EU Pay Transparency Directive makes gender pay gap reports mandatory from June 2027, but today they are self-declared. Equilux lets a company prove its published gap was computed from its complete payroll, co-signed by its own employees, without any individual salary being revealed to the public, colleagues, the regulator or Equilux. A Compact zero-knowledge circuit rejects omitted, invented or duplicate records and verifies the mean gap without in-circuit division, and each worker gets a private inclusion receipt. Proven end to end on a local Midnight network with real ZK proofs.",
+    tech: ["Midnight", "Compact", "Zero-Knowledge", "TypeScript", "React"],
+    demo: "https://youtu.be/a421rpRWTpI",
+    link: "https://equilux-lac.vercel.app",
+    submission: "https://app.akindo.io/communities/OVOdn4xqaC8a49qOa/products/4eJNLmraOCeq4LE7",
+    github: "https://github.com/AustinChris1/Equilux",
     category: "Blockchain",
   },
   {
@@ -1050,6 +1068,17 @@ const ProjectModal = ({ project, onClose }) => {
                   >
                     <Github size={14} />
                     Code
+                  </a>
+                )}
+                {project.submission && (
+                  <a
+                    href={project.submission}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 text-white/70 hover:text-white hover:bg-white/5 transition text-xs uppercase tracking-widest2"
+                  >
+                    <ArrowUpRight size={14} />
+                    Submission
                   </a>
                 )}
               </div>
