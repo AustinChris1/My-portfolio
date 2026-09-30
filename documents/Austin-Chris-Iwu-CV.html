@@ -137,6 +137,7 @@
   .stack{color:var(--muted);font-style:italic}
   .proj p{margin-top:1px}
   @page{size:A4;margin:0}
+  .next-page{break-before:page;page-break-before:always}
   @media print{
     body{background:#fff}
     .actions{display:none}
@@ -166,7 +167,7 @@
     <h1>Austin-Chris Iwu</h1>
     <div class="headline">Electrical and Electronics Engineer  ·  Full-Stack Developer</div>
     <div class="contact">
-      Owerri, Nigeria  ·  Nigerian<br />
+      Owerri, Nigeria  ·  Nigerian  ·  +234 806 243 9424<br />
       <a href="mailto:austinchrisiwu@gmail.com">austinchrisiwu@gmail.com</a>
       · <a href="https://austinchris.me">austinchris.me</a>
       · <a href="https://github.com/AustinChris1">github.com/AustinChris1</a>
@@ -178,12 +179,10 @@
     <h2>Profile</h2>
     <p>
       B.Eng. Electrical and Electronics Engineering, Second Class Upper (CGPA 4.09 / 5.00),
-      Electronics and Computing, Federal University of Technology, Owerri. I build across
-      firmware, backend systems, and product interfaces: a multilingual AI and IoT crop-health
-      rover for my final-year project, production platforms at First Digit Communications,
-      and public work on Zcash, Flare, Solana, 0G, Celo, and Midnight. Earmark won Best Stablecoin
-      Adoption at the Celo Agents at Work Hackathon (September 2026), and Equilux was a Wave 1 winner
-      of the Midnight Buildathon. Nigerian, based in Owerri. Open to
+      Federal University of Technology, Owerri. I build production software and the hardware it
+      talks to: platforms at First Digit, an AI and IoT crop-health rover for my final-year project,
+      and open-source systems work. Two hackathon wins in 2026, Best Stablecoin Adoption at Celo
+      Agents at Work and Wave 1 of the Midnight Buildathon. Nigerian, based in Owerri. Open to
       funded graduate study abroad and to software or embedded roles.
     </p>
   </section>
@@ -217,6 +216,24 @@
   </section>
 
   <section>
+    <h2>Honours and awards</h2>
+    <div class="item">
+      <div class="row">
+        <div><span class="title">Best Stablecoin Adoption</span>  ·  Celo Agents at Work Hackathon</div>
+        <div class="meta">Sep 2026</div>
+      </div>
+      <p>For Earmark, a non-custodial group-payment agent live on Celo mainnet.</p>
+    </div>
+    <div class="item">
+      <div class="row">
+        <div><span class="title">Wave 1 winner</span>  ·  Midnight Buildathon</div>
+        <div class="meta">Sep 2026</div>
+      </div>
+      <p>For Equilux, employee-verifiable pay-gap reporting with zero-knowledge proofs.</p>
+    </div>
+  </section>
+
+  <section>
     <h2>Experience</h2>
     <div class="item">
       <div class="row">
@@ -243,7 +260,7 @@
       <div class="skill-row"><div class="skill-key">Data</div><div>MySQL, Firebase/Firestore, SQLite, schema design</div></div>
       <div class="skill-row"><div class="skill-key">Embedded</div><div>ESP32, ESP32-CAM, Arduino, Raspberry Pi, IoT sensors, Proteus</div></div>
       <div class="skill-row"><div class="skill-key">Vision / AI</div><div>MediaPipe, face-api.js, browser vision pipelines, TEE sealed inference</div></div>
-      <div class="skill-row"><div class="skill-key">Onchain</div><div>Solana, Zcash, Internet Computer, Flare, 0G Compute/Storage, XRPL, Solidity</div></div>
+      <div class="skill-row"><div class="skill-key">Onchain</div><div>Solidity, Celo, Midnight, Zcash, Solana, Flare, 0G, zero-knowledge proofs</div></div>
       <div class="skill-row"><div class="skill-key">Tools</div><div>Git, Linux, Vite, Vercel, Telegram Bots, Paystack, Jupiter API</div></div>
     </div>
   </section>
@@ -253,33 +270,8 @@
     <p><span class="title">English</span>  ·  Fluent (language of instruction) &nbsp;&nbsp; <span class="title">Igbo</span>  ·  Native</p>
   </section>
 
-  <section>
-    <h2>Selected projects</h2>
-    <div class="item proj">
-      <div class="row">
-        <div><span class="title">Atelier Fit</span></div>
-        <div class="meta">body-measurement-green.vercel.app</div>
-      </div>
-      <p>Computer-vision tailoring tool. Two phone photos plus height produce a full sewing measurement set (male/female), a ready-to-wear size suggestion, saved profiles, and an exportable measurement card. <span class="stack">React, Tailwind CSS, MediaPipe</span></p>
-    </div>
-    <div class="item proj">
-      <div class="row">
-        <div><span class="title">Degenerate Bot</span></div>
-        <div class="meta">t.me/DegenerateDDBot</div>
-      </div>
-      <p>Telegram limit-order bot for Solana tokens that takes entry, take-profit, and stop-loss in market cap rather than price. Orders fill server-side while the user is offline. Keys are AES-256-GCM encrypted with per-wallet salts; 95 tests cover the money path. <span class="stack">Node.js, Solana, Jupiter API, SQLite, grammY</span></p>
-    </div>
-    <div class="item proj">
-      <div class="row">
-        <div><span class="title">Theia</span></div>
-        <div class="meta">theiatrading.vercel.app</div>
-      </div>
-      <p>Event-driven trading system that folds exchange and insider-wallet flows, liquidations, unlocks, macro events, and multi-timeframe analysis into one confluence score, then can execute on an exchange account. <span class="stack">Node.js, market data</span></p>
-    </div>
-  </section>
-
-  <section>
-    <h2>Hackathons and open-source work</h2>
+  <section class="next-page">
+    <h2>Selected projects and hackathons</h2>
     <div class="item proj">
       <div class="row">
         <div><span class="title">Earmark</span>  ·  Celo Agents at Work  ·  <span class="org">Winner, Best Stablecoin Adoption</span></div>

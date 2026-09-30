@@ -21,7 +21,8 @@ if (-not $browser) { throw "No Chrome or Edge found to render the PDF." }
 
 $jobs = @(
   @{ in = "Austin-Chris-Iwu-Resume.html"; out = "Austin-Chris-Iwu-Resume.pdf" },
-  @{ in = "Austin-Chris-Iwu-CV.html";     out = "Austin-Chris-Iwu-CV.pdf" }
+  @{ in = "Austin-Chris-Iwu-CV.html";     out = "Austin-Chris-Iwu-CV.pdf" },
+  @{ in = "Austin-Chris-Iwu-Research-Statement.html"; out = "Austin-Chris-Iwu-Research-Statement.pdf" }
 )
 
 foreach ($j in $jobs) {

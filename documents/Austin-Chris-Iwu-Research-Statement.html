@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Austin-Chris Iwu - Statement of research intent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box}
+  :root{--ink:#14181f;--text:#2b323c;--muted:#5c6572;--paper:#fff;--screen:#ebe6de}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{margin:0;background:var(--screen);color:var(--text);font-family:"Source Sans 3","Segoe UI",Arial,sans-serif;font-size:11pt;line-height:1.45}
+  .actions{position:fixed;top:16px;right:16px;display:flex;gap:8px}
+  .actions a,.actions button{border:1px solid var(--ink);border-radius:3px;padding:8px 12px;background:var(--ink);color:#fff;font:600 11px/1 "Source Sans 3",Arial,sans-serif;text-decoration:none;cursor:pointer}
+  .actions button{background:transparent;color:var(--ink)}
+  .page{width:210mm;min-height:297mm;margin:22px auto;padding:18mm 20mm;background:var(--paper);box-shadow:0 18px 50px rgba(20,24,31,.12)}
+  header{padding-bottom:10px;margin-bottom:14px}
+  header::after{content:"";display:block;height:4px;margin-top:10px;border-top:1.7px solid var(--ink);border-bottom:.45px solid var(--ink)}
+  h1{margin:0;color:var(--ink);font-family:"Source Serif 4",Georgia,serif;font-size:22pt;font-weight:700;line-height:1}
+  .kicker{margin-top:6px;color:var(--ink);font-size:11pt;font-weight:600}
+  .contact{margin-top:4px;color:var(--muted);font-size:9.5pt}
+  h2{margin:16px 0 6px;color:var(--ink);font-size:11pt;font-weight:700}
+  p{margin:0 0 10px}
+  @page{size:A4;margin:0}
+  @media print{
+    body{background:#fff}
+    .actions{display:none}
+    .page{margin:0;box-shadow:none;width:auto;min-height:auto;padding:16mm 18mm}
+  }
+</style>
+</head>
+<body>
+<div class="actions">
+  <a href="Austin-Chris-Iwu-Research-Statement.pdf" download>Download PDF</a>
+  <button type="button" onclick="window.print()">Print</button>
+</div>
+<main class="page">
+  <header>
+    <h1>Austin-Chris Iwu</h1>
+    <div class="kicker">Statement of research intent</div>
+    <div class="contact">
+      B.Eng. Electrical and Electronics Engineering, FUTO, 2025
+      · Second Class Upper, CGPA 4.09 / 5.00
+      · austinchrisiwu@gmail.com
+      · austinchris.me
+    </div>
+  </header>
+
+  <p>
+    I want to work on sensing and advice for smallholder farmers: how a cheap device in the field
+    produces a measurement someone can act on, in a language they already speak, when the network
+    is poor and a wrong recommendation costs a season.
+  </p>
+  <p>
+    That is the question I started in my final-year project, AgroSense360. I built an ESP32 and
+    Arduino rover, a vision pipeline, and a React and Firebase dashboard that returns crop-health
+    advice in local languages. The hardware, the model, and the interface were one system. What
+    the project did not do, and what I want a lab for, is a proper study of whether the advice
+    is right, and whether a farmer will use it.
+  </p>
+  <p>
+    The research I am proposing has three parts. First, sensor fusion under field noise: camera
+    frames plus the cheap environmental sensors an ESP32 can actually carry, not a lab bench.
+    Second, where the inference should run. A phone or the rover itself has to keep working when
+    the uplink drops, so I care about what can stay on the device and what is worth sending.
+    Third, evaluation with users. A labelled leaf dataset is not the same as a farmer deciding
+    whether to spray. I want the study designed around that decision.
+  </p>
+  <p>
+    I do not have journal papers, conference papers, or posters. The degree project is the
+    research I have done. Around it I have two years of shipping production software at First
+    Digit Communications (learning platforms, commerce, a school directory) and two hackathon
+    wins in 2026: Earmark, Best Stablecoin Adoption at Celo Agents at Work, and Equilux, Wave 1
+    of the Midnight Buildathon. Those are not agriculture. They are the same habit: a constraint
+    the user can check, built through to something that runs.
+  </p>
+  <p>
+    I am applying to work with a supervisor in embedded systems, computer vision, or agricultural
+    engineering who wants a student who can build the apparatus and stay for the evaluation.
+    If your group is on a different problem, I can rewrite this page around that problem. I
+    would rather send you a statement about your lab than a general one.
+  </p>
+</main>
+</body>
+</html>
