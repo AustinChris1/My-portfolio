@@ -100,6 +100,9 @@ import equilux1 from "../assets/equilux1.png";
 import equilux2 from "../assets/equilux2.png";
 import equilux3 from "../assets/equilux3.png";
 import equilux4 from "../assets/equilux4.png";
+import shigo1 from "../assets/shigo1.png";
+import shigo2 from "../assets/shigo2.png";
+import shigo3 from "../assets/shigo3.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,6 +110,16 @@ const hasGithub = (project) =>
   Boolean(project.github && project.github !== "#");
 
 const projectsData = [
+  {
+    images: [shigo1, shigo2, shigo3],
+    title: "Shigo",
+    description:
+      "Reads the bank alerts a person already gets. A payment stays unpaid until their own bank shows the money, so a screenshot cannot prove it. The same alerts sort every naira in and out. For anyone paid by transfer before they hand something over, and for anyone who only wants to track money.",
+    tech: ["Next.js", "Android"],
+    link: "https://useshigo.vercel.app",
+    github: "#",
+    category: "Web Development",
+  },
   {
     images: [Agrosense1, Agrosense2, Agrosense3, Agrosense4, Agrosense5],
     title: "AgroSense360",
