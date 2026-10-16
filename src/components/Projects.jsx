@@ -103,6 +103,9 @@ import equilux4 from "../assets/equilux4.png";
 import shigo1 from "../assets/shigo1.png";
 import shigo2 from "../assets/shigo2.png";
 import shigo3 from "../assets/shigo3.png";
+import shigoSite1 from "../assets/shigo-site1.png";
+import shigoSite2 from "../assets/shigo-site2.png";
+import shigoSite3 from "../assets/shigo-site3.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -110,16 +113,6 @@ const hasGithub = (project) =>
   Boolean(project.github && project.github !== "#");
 
 const projectsData = [
-  {
-    images: [shigo1, shigo2, shigo3],
-    title: "Shigo",
-    description:
-      "Reads the bank alerts a person already gets. A payment stays unpaid until their own bank shows the money, so a screenshot cannot prove it. The same alerts sort every naira in and out. For anyone paid by transfer before they hand something over, and for anyone who only wants to track money.",
-    tech: ["Next.js", "Android"],
-    link: "https://useshigo.vercel.app",
-    github: "#",
-    category: "Web Development",
-  },
   {
     images: [Agrosense1, Agrosense2, Agrosense3, Agrosense4, Agrosense5],
     title: "AgroSense360",
@@ -330,6 +323,17 @@ const projectsData = [
 ];
 
 const hackathonsData = [
+  {
+    images: [shigoSite1, shigoSite2, shigoSite3, shigo1, shigo2, shigo3],
+    title: "Shigo",
+    event: "InnovateX, Blaze by Ecobank",
+    description:
+      "Shigo reduces transfer fraud by confirming a payment only when the person's own bank shows the money, so a screenshot cannot prove it. It does that by reading the bank alerts they already get. Those same alerts are the expense tracker: every naira in and out, sorted, with nothing typed in. The site works on any phone. On Android, an APK reads the bank-app alerts. It does not read SMS or WhatsApp, and it does not hold or move money. Anyone paid by transfer before they hand something over can use it, and anyone can use it only to track money.",
+    tech: ["Next.js", "Android"],
+    link: "https://useshigo.vercel.app",
+    github: "#",
+    category: "Web Development",
+  },
   {
     images: [earmark1, earmark2, earmark3, earmark4],
     title: "Earmark",
